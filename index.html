@@ -9,6 +9,13 @@
 <meta property="og:description" content="Brand-new windows, doors, flooring and tools at about 40% off retail. Pickup in Philadelphia, PA.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0a0e1a">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:url" content="https://thes0ln.com/">
+<meta property="og:site_name" content="The Soln">
+<link rel="canonical" href="https://thes0ln.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%230f1629'/%3E%3Cpath fill='%232ee6ff' d='M3 2h10v12H3z'/%3E%3Cpath fill='%23f1f6ff' d='M4 3h3v4H4zm5 0h3v4H9zM4 8h3v5H4zm5 0h3v5H9z'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"The Soln","alternateName":"Ron's Retail LLC","url":"https://thes0ln.com/","email":"ronsretailllc@gmail.com","description":"Brand-new contractor-grade surplus: windows, doors, flooring and tools at about 40% off retail. Pickup in Philadelphia, PA by appointment. Cash only.","areaServed":"Philadelphia, PA","address":{"@type":"PostalAddress","addressLocality":"Philadelphia","addressRegion":"PA","addressCountry":"US"},"paymentAccepted":"Cash","priceRange":"$"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Orbitron:wght@600;700;800&family=Share+Tech+Mono&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -130,6 +137,11 @@
   footer { border-top: 2px solid var(--accent); margin-top: 50px; padding: 30px 0 40px; font-size: 13px; color: var(--text-3); background: var(--bg-2); }
   footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
   footer .brand .name { font-size: 30px; }
+  footer .legal { font-family: var(--pixel); font-size: 12px; color: var(--text-2); letter-spacing: .03em; }
+  footer .legal a { color: var(--accent); text-decoration: none; }
+  .legal-body { color: var(--text); font-size: 14px; line-height: 1.6; }
+  .legal-body h4 { font-family: var(--head); font-size: 13px; color: var(--accent); margin: 14px 0 4px; letter-spacing: .04em; text-transform: uppercase; }
+  .legal-body p { margin: 0 0 8px; }
 
   /* detail */
   .detail { display: none; padding: 20px 0 40px; }
@@ -234,8 +246,13 @@
 <footer id="contact"><div class="wrap">
   <div class="brand"><span class="name">The <b>Soln</b></span><span class="by">by Ron's Retail LLC</span></div>
   <div id="footContact"></div>
-  <div id="foot"></div>
+  <div class="legal"><a href="#" data-legal="terms">Terms of sale</a> · <a href="#" data-legal="privacy">Privacy</a> · <span id="foot"></span></div>
 </div></footer>
+<div class="modal" id="legalModal"><div class="dialog" style="max-width:640px">
+  <h3 id="legalTitle"></h3>
+  <div id="legalBody" class="legal-body"></div>
+  <div class="acts"><button type="button" class="btn primary" id="legalClose">Close</button></div>
+</div></div>
 <div class="modal" id="apptModal"><form class="dialog" id="apptForm">
   <h3>Request a pickup appointment</h3>
   <div class="sub">Tell us what you want and when you're free. We email you a confirmation, then call to lock in the time.</div>
@@ -410,6 +427,21 @@
   window.addEventListener('hashchange', route);
   $('#lightbox').addEventListener('click', () => $('#lightbox').classList.remove('open'));
   $('#brandLink').onclick = e => { e.preventDefault(); location.hash = ''; window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const LEGAL = {
+    terms: ['Terms of sale', `<h4>Who we are</h4><p>The Soln is operated by Ron's Retail LLC, Philadelphia, Pennsylvania.</p>
+      <h4>Condition</h4><p>Unless an item page says otherwise, everything is brand new, never installed and sold as-is. Model numbers and sizes are listed so you can confirm fit before you request a pickup. Please check them; windows and doors are not returnable once they leave.</p>
+      <h4>Pricing and payment</h4><p>Prices are per unit unless stated. Payment is cash at pickup. Pennsylvania sales tax is collected where required. Volume pricing is available on multiple units or full lots; ask when you request your appointment.</p>
+      <h4>Appointments and holds</h4><p>Pickup is by appointment only. A request is not a hold: an item is reserved for you only once we have confirmed by email and agreed a time by phone. Quantities are subject to prior sale.</p>
+      <h4>Pickup</h4><p>Buyer loads and transports. Bring a vehicle and help suitable for the item. Delivery may be available on larger orders at an agreed cost.</p>
+      <h4>Returns</h4><p>All sales are final. Inspect items at pickup; we will not release an item you are not satisfied with.</p>`],
+    privacy: ['Privacy', `<h4>What this site collects</h4><p>Nothing automatically. This site sets no cookies and runs no analytics or tracking.</p>
+      <h4>Appointment requests</h4><p>When you request a pickup, your name, phone number, email and message are sent to us by email from your own email app. We use them only to confirm and schedule your pickup, and we do not share or sell them.</p>
+      <h4>Photos and content</h4><p>Product photos are of the actual items we hold. Brand names and model numbers belong to their manufacturers and are used to identify the products.</p>
+      <h4>Contact</h4><p>Questions about your data: ronsretailllc@gmail.com.</p>`]
+  };
+  document.addEventListener('click', e => { const a = e.target.closest('[data-legal]'); if (!a) return; e.preventDefault(); const [t, b] = LEGAL[a.dataset.legal]; $('#legalTitle').textContent = t; $('#legalBody').innerHTML = b; $('#legalModal').classList.add('open'); });
+  $('#legalClose').onclick = () => $('#legalModal').classList.remove('open');
+  $('#legalModal').addEventListener('mousedown', e => { if (e.target === $('#legalModal')) $('#legalModal').classList.remove('open'); });
   renderList(); route();
   $('#foot').textContent = `${data && data.updated ? 'Inventory updated ' + new Date(data.updated).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' : ''}© ${new Date().getFullYear()} Ron's Retail LLC`;
 })();
