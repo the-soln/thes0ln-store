@@ -13,7 +13,7 @@
   "instagram": "",
   "banner": ""
  },
- "updated": "2026-10-16T23:54:56.503Z",
+ "updated": "2026-10-16T23:56:52.611Z",
  "items": [
   {
    "id": "okvqau8e1a13d86fb17",
@@ -448,22 +448,6 @@
    "photos": []
   },
   {
-   "id": "o5lytwd31a142986b45",
-   "name": "Foxglade 31 in. Single Sink Light Gray Bath Vanity with White Cultured Marble Top (Assembled)",
-   "price": 199,
-   "category": "Kitchen & bath",
-   "condition": "New",
-   "brand": "",
-   "model": "HD #334563223",
-   "retail": 329,
-   "size": "",
-   "desc": "Foxglade 31 in. single sink light gray bath vanity with white cultured marble top, fully assembled. Brand new. Home Depot retail $329.",
-   "qty": 1,
-   "url": "",
-   "added": "2026-05-28",
-   "photos": []
-  },
-  {
    "id": "t2yuk85d1a14299e06b",
    "name": "Andersen 400 Series 71-1/4 in. x 79-1/2 in. White Right-Hand Frenchwood Gliding Patio Door, Pine Interior, Moving Panel with Blinds",
    "price": 650,
@@ -635,5 +619,12 @@
    "photos": []
   }
  ],
- "sold": []
+ "sold": [
+  {
+   "id": "o5lytwd31a142986b45",
+   "name": "Foxglade 31 in. Single Sink Light Gray Bath Vanity with White Cultured Marble Top (Assembled)",
+   "date": "2026-09-07",
+   "photo": ""
+  }
+ ]
 }
