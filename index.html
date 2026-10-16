@@ -234,7 +234,7 @@
   $('#heroContact').innerHTML = contactBtns('ghost lg');
   $('#navCta').innerHTML = st.phone ? `<a class="btn primary sm" href="sms:${esc(phoneDigits)}">Text us</a>` : (st.email ? `<a class="btn primary sm" href="mailto:${esc(st.email)}">Email</a>` : '');
   $('#footContact').innerHTML = [st.location ? `📍 ${esc(st.location)}` : '', st.phone ? `📞 ${esc(st.phone)}` : '', st.email ? `✉️ ${esc(st.email)}` : ''].filter(Boolean).join(' &nbsp;·&nbsp; ');
-  $('#trust .wrap').innerHTML = ['Brand new, never installed', st.location ? `Pickup in ${esc(st.location)}` : 'Local pickup', 'Cash, Venmo or Zelle', 'Volume pricing on lots'].map(t => `<span>${t}</span>`).join('');
+  $('#trust .wrap').innerHTML = ['Brand new, never installed', st.location ? `Pickup in ${esc(st.location)}` : 'Local pickup', 'Cash only', 'Volume pricing on lots'].map(t => `<span>${t}</span>`).join('');
 
   const items = ((data && data.items) || []).filter(i => i && i.name).map(i => Object.assign({ photos: [] }, i, { photos: Array.isArray(i.photos) ? i.photos : (i.photo ? [i.photo] : []) }));
   const sold = ((data && data.sold) || []).filter(s => s && s.name);
@@ -276,7 +276,7 @@
   if (sold.length) { $('#soldSec').hidden = false; $('#soldStrip').innerHTML = sold.map(s => `<div class="sold"><div class="ph">${s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : '🏷️'}<span>Sold</span></div><div class="nm">${esc(s.name)}</div></div>`).join(''); }
   $('#aboutGrid').innerHTML = [
     `<div class="panel dark"><h3>About</h3>${esc(st.about || 'We buy contractor surplus and overstock, brand new and never installed, and pass the savings on. Inventory changes weekly.')}</div>`,
-    `<div class="panel"><h3>Pickup &amp; payment</h3>${esc(st.policies || 'Local pickup, buyer loads and transports. Cash, Venmo or Zelle. Ask about delivery on larger orders.')}</div>`,
+    `<div class="panel"><h3>Pickup &amp; payment</h3>${esc(st.policies || 'Local pickup, buyer loads and transports. Cash only. Ask about delivery on larger orders.')}</div>`,
     `<div class="panel"><h3>Get in touch</h3>Fastest way is a text with the item name. Volume buyers: ask about pricing on full lots.<div class="acts">${contactBtns('')}</div></div>`
   ].join('');
 
@@ -299,7 +299,7 @@
           <dl class="specs">${[['Brand', i.brand], ['Size', i.size], ['Condition', i.condition], ['Available', i.qty > 1 ? i.qty + ' units' : '1 unit']].filter(x => x[1]).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
           ${i.desc ? `<div class="desc">${esc(i.desc)}</div>` : ''}
           <div class="acts">${want}<div class="row">${second}${i.url ? `<a class="btn" href="${esc(i.url)}" target="_blank" rel="noopener">View listing</a>` : ''}<button class="btn" id="shareBtn">Share</button></div></div>
-          <div class="fine">${esc(st.policies || 'Local pickup. Cash, Venmo or Zelle.')}</div>
+          <div class="fine">${esc(st.policies || 'Local pickup. Cash only.')}</div>
         </div>
       </div>`;
     $('#listView').hidden = true; d.classList.add('open'); window.scrollTo(0, 0);
