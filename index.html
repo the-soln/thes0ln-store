@@ -1,203 +1,321 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="ocean">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shop</title>
-<meta name="description" content="Hand-picked resale finds. See what is available right now.">
-<meta name="theme-color" content="#2a78d6">
+<title>The Soln · Contractor-grade surplus</title>
+<meta name="description" content="Brand-new windows, doors, flooring and tools at about 40% off retail. Pickup in Easton or Philadelphia, PA.">
+<meta property="og:title" content="The Soln · Contractor-grade surplus">
+<meta property="og:description" content="Brand-new windows, doors, flooring and tools at about 40% off retail. Pickup in Easton or Philadelphia, PA.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f1115">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { color-scheme: light; --bg: #f3f4f6; --surface: #fff; --surface-2: #f1f2f4; --border: #e5e7eb; --text: #0f172a; --text-2: #475569; --text-3: #94a3b8; --good: #0f6b3f; --good-bg: #e3f5ec; --shadow: 0 10px 30px rgba(15,23,42,.08); --shadow-sm: 0 2px 8px rgba(15,23,42,.06); --accent: #2a78d6; --accent-2: #1baf7a; --tint: #e2edfb; --on-accent: #fff; }
-  :root[data-mode="dark"] { color-scheme: dark; --bg: #0f1115; --surface: #171a21; --surface-2: #1f2330; --border: #2a2f3d; --text: #f1f5f9; --text-2: #b6bdcc; --text-3: #7c8498; --good: #6fd39f; --good-bg: #123526; --shadow: 0 10px 30px rgba(0,0,0,.45); --shadow-sm: 0 2px 8px rgba(0,0,0,.35); }
-  :root[data-theme="ocean"] { --accent: #2a78d6; --accent-2: #1baf7a; --tint: #e2edfb; }
-  :root[data-theme="sunset"] { --accent: #eb6834; --accent-2: #e87ba4; --tint: #fde9e0; }
-  :root[data-theme="forest"] { --accent: #0c8a3e; --accent-2: #1baf7a; --tint: #e3f5ec; }
-  :root[data-theme="lavender"] { --accent: #5b47c9; --accent-2: #b26be0; --tint: #ebe8fb; }
-  :root[data-theme="midnight"] { --accent: #3987e5; --accent-2: #9085e9; --tint: #14294a; }
-  :root[data-theme="slate"] { --accent: #334155; --accent-2: #64748b; --tint: #e2e8f0; }
-  :root[data-mode="dark"][data-theme="ocean"] { --accent: #3987e5; --accent-2: #199e70; --tint: #14294a; }
-  :root[data-mode="dark"][data-theme="sunset"] { --accent: #f07a4a; --accent-2: #d55181; --tint: #3a2218; }
-  :root[data-mode="dark"][data-theme="forest"] { --accent: #22a356; --accent-2: #199e70; --tint: #123526; }
-  :root[data-mode="dark"][data-theme="lavender"] { --accent: #7c6cf0; --accent-2: #c77ff2; --tint: #2a2350; }
-  :root[data-mode="dark"][data-theme="slate"] { --accent: #64748b; --accent-2: #94a3b8; --tint: #1e293b; }
+  :root { --ink: #0f1115; --ink-2: #1b1f27; --ink-3: #2a2f3a; --paper: #f6f6f4; --surface: #ffffff; --line: #e6e6e2; --text: #111318; --text-2: #4b5160; --text-3: #8a90a0; --accent: #f97316; --accent-dark: #ea580c; --accent-ink: #111; --ok: #15803d; --ok-bg: #e7f6ec; --radius: 14px; --shadow: 0 12px 30px rgba(17,19,24,.10); --shadow-sm: 0 2px 8px rgba(17,19,24,.06); --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif; --body: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px 60px; }
-  .btn { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 12px; padding: 8px 14px; cursor: pointer; text-decoration: none; font: inherit; font-weight: 500; white-space: nowrap; }
-  .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); border-color: transparent; }
-  .btn.sm { padding: 6px 10px; font-size: 13px; border-radius: 9px; }
-  .btn.ghost { background: transparent; border-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--text); font: 15px/1.55 var(--body); }
+  a { color: inherit; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  h1, h2, h3, .display { font-family: var(--display); letter-spacing: .01em; text-transform: uppercase; line-height: 1; margin: 0; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--text); border-radius: 10px; padding: 11px 18px; cursor: pointer; text-decoration: none; font: 600 14px var(--body); white-space: nowrap; transition: transform .1s, background .15s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+  .btn.primary:hover { background: var(--accent-dark); }
+  .btn.dark { background: var(--ink); color: #fff; border-color: transparent; }
+  .btn.ghost { background: transparent; border-color: rgba(255,255,255,.25); color: #fff; }
+  .btn.sm { padding: 7px 12px; font-size: 13px; }
+  .btn.lg { padding: 14px 24px; font-size: 16px; }
 
-  .cover { position: relative; margin: 0 -16px 0; min-height: 190px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; overflow: hidden; }
-  .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55)); }
-  .cover .in { position: relative; z-index: 1; padding: 44px 16px 18px; max-width: 1100px; margin: 0 auto; }
-  .cover h1 { margin: 0; font-size: 30px; letter-spacing: -.02em; text-shadow: 0 2px 10px rgba(0,0,0,.3); }
-  .cover p { margin: 4px 0 0; opacity: .95; text-shadow: 0 1px 6px rgba(0,0,0,.35); }
-  .cover .loc { font-size: 13px; opacity: .9; margin-top: 2px; }
-  .contact { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-  .contact .btn { background: rgba(255,255,255,.92); color: #0f172a; border-color: transparent; }
-  .contact .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; }
+  /* header */
+  .top { position: sticky; top: 0; z-index: 20; background: var(--ink); color: #fff; border-bottom: 3px solid var(--accent); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px; height: 64px; }
+  .brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; color: #fff; }
+  .brand .name { font-family: var(--display); font-weight: 800; font-size: 30px; letter-spacing: .04em; text-transform: uppercase; }
+  .brand .name b { color: var(--accent); }
+  .brand .by { font-size: 11px; color: #aeb4c2; letter-spacing: .08em; text-transform: uppercase; }
+  .nav { display: flex; gap: 6px; align-items: center; }
+  .nav a { color: #d7dbe4; text-decoration: none; font-weight: 600; font-size: 14px; padding: 8px 12px; border-radius: 8px; }
+  .nav a:hover { background: var(--ink-2); color: #fff; }
+  .nav .btn { margin-left: 6px; }
 
-  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 14px 0 10px; }
-  .toolbar input, .toolbar select { border: 1px solid var(--border); background: var(--surface); border-radius: 12px; padding: 9px 11px; font: inherit; color: inherit; }
-  .toolbar input { flex: 1; min-width: 150px; }
-  .chips { display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; margin-bottom: 8px; scrollbar-width: none; }
+  /* hero */
+  .hero { background: var(--ink); color: #fff; position: relative; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, transparent 0 28px, rgba(255,255,255,.025) 28px 30px); }
+  .hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .32; }
+  .hero .wrap { position: relative; padding: 56px 20px 46px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px; align-items: end; }
+  .hero h1 { font-size: clamp(44px, 7vw, 84px); font-weight: 800; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p { font-size: 18px; color: #c9cedb; max-width: 560px; margin: 14px 0 22px; }
+  .hero .cta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .stat { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 14px 14px 12px; }
+  .stat .v { font-family: var(--display); font-size: 34px; font-weight: 800; color: var(--accent); line-height: 1; }
+  .stat .l { font-size: 12px; color: #aeb4c2; margin-top: 4px; letter-spacing: .04em; text-transform: uppercase; }
+
+  /* trust strip */
+  .trust { background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: 14px; }
+  .trust .wrap { display: flex; gap: 26px; flex-wrap: wrap; justify-content: center; padding: 11px 20px; }
+  .trust span::before { content: "✔"; margin-right: 7px; }
+
+  section { padding: 38px 0 6px; }
+  .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .sec-head h2 { font-size: 34px; font-weight: 800; }
+  .sec-head h2 small { display: block; font: 500 13px var(--body); text-transform: none; letter-spacing: 0; color: var(--text-3); margin-top: 6px; }
+
+  /* categories */
+  .cats { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+  .cat { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; background: var(--ink-2); color: #fff; cursor: pointer; box-shadow: var(--shadow-sm); text-decoration: none; display: block; }
+  .cat img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  .cat:hover img { transform: scale(1.04); }
+  .cat .ico { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 56px; opacity: .35; }
+  .cat .ov { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.78)); }
+  .cat .t { position: absolute; left: 14px; right: 14px; bottom: 12px; }
+  .cat .t h3 { font-size: 26px; font-weight: 800; }
+  .cat .t .m { font-size: 12px; color: #d7dbe4; margin-top: 3px; }
+  .cat .t .m b { color: var(--accent); }
+
+  /* product grid */
+  .toolbar { position: sticky; top: 64px; z-index: 10; background: var(--paper); padding: 10px 0; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+  .toolbar input, .toolbar select { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 10px 12px; font: 500 14px var(--body); color: inherit; }
+  .toolbar input { flex: 1; min-width: 160px; }
+  .chips { display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; width: 100%; padding-bottom: 2px; }
   .chips::-webkit-scrollbar { display: none; }
-  .chip { flex: none; border: 1px solid var(--border); background: var(--surface); border-radius: 999px; padding: 5px 12px; font-size: 13px; cursor: pointer; }
-  .chip.on { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border-color: transparent; }
-  .count { font-size: 12px; color: var(--text-3); margin: 0 0 8px; }
-
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; box-shadow: var(--shadow-sm); transition: transform .12s; }
-  .card:hover { transform: translateY(-2px); }
-  .card .ph { aspect-ratio: 1; background: var(--surface-2); display: flex; align-items: center; justify-content: center; color: var(--text-3); font-size: 34px; overflow: hidden; position: relative; }
+  .chip { flex: none; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .count { font-size: 13px; color: var(--text-3); margin: 0 0 10px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; cursor: pointer; box-shadow: var(--shadow-sm); transition: transform .12s, box-shadow .12s; }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .card .ph { aspect-ratio: 1; background: #ebebe7; display: flex; align-items: center; justify-content: center; color: var(--text-3); font-size: 40px; overflow: hidden; position: relative; }
   .card .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .card .ph .n { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,.55); color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 999px; }
-  .card .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 3px; flex: 1; }
-  .card .name { font-weight: 600; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .card .ph .n { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,.6); color: #fff; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+  .card .ph .new { position: absolute; left: 8px; top: 8px; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; letter-spacing: .04em; }
+  .card .body { padding: 11px 13px 13px; display: flex; flex-direction: column; gap: 3px; flex: 1; }
+  .card .cat-l { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+  .card .name { font-weight: 600; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 14px; }
   .card .meta { font-size: 12px; color: var(--text-3); }
-  .card .price { font-size: 17px; font-weight: 700; margin-top: auto; padding-top: 4px; }
-  .cond { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--good-bg); color: var(--good); font-weight: 600; }
+  .card .price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; margin-top: auto; padding-top: 8px; }
+  .card .price { font-family: var(--display); font-size: 24px; font-weight: 800; }
+  .cond { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; background: var(--ok-bg); color: var(--ok); font-weight: 700; }
   .empty { text-align: center; color: var(--text-3); padding: 50px 10px; }
 
-  .section { margin-top: 26px; }
-  .section h2 { font-size: 18px; margin: 0 0 10px; letter-spacing: -.01em; }
-  .about { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
-  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; box-shadow: var(--shadow-sm); white-space: pre-line; }
-  .panel h3 { margin: 0 0 6px; font-size: 14px; color: var(--text-2); }
-  .strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
-  .sold { flex: none; width: 120px; }
-  .sold .ph { width: 120px; height: 120px; border-radius: 12px; background: var(--surface-2); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; color: var(--text-3); font-size: 28px; }
-  .sold .ph img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.4); }
-  .sold .ph span { position: absolute; left: 8px; top: 8px; background: #0f172a; color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 600; }
-  .sold .nm { font-size: 12px; margin-top: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  footer { margin-top: 36px; font-size: 12px; color: var(--text-3); text-align: center; }
+  /* about */
+  .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; white-space: pre-line; box-shadow: var(--shadow-sm); }
+  .panel h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+  .panel.dark { background: var(--ink); color: #e5e8ef; border-color: transparent; }
+  .panel.dark h3 { color: var(--accent); }
+  .panel .acts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+  /* sold */
+  .strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: thin; }
+  .sold { flex: none; width: 130px; }
+  .sold .ph { width: 130px; height: 130px; border-radius: 12px; background: #ebebe7; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; color: var(--text-3); font-size: 30px; }
+  .sold .ph img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.5); }
+  .sold .ph span { position: absolute; left: 8px; top: 8px; background: var(--ink); color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 700; }
+  .sold .nm { font-size: 12px; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  footer { background: var(--ink); color: #aeb4c2; margin-top: 50px; padding: 34px 0 40px; font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+  footer .brand .name { font-size: 24px; }
 
   /* detail */
-  .detail { display: none; }
+  .detail { display: none; padding: 20px 0 40px; }
   .detail.open { display: block; }
-  .detail .back { margin: 12px 0; }
-  .carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; border-radius: 16px; scrollbar-width: none; background: var(--surface-2); }
+  .crumb { font-size: 13px; color: var(--text-3); margin-bottom: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .crumb a { color: var(--text-2); text-decoration: none; font-weight: 600; }
+  .dwrap { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 820px) { .dwrap { grid-template-columns: 1.15fr .85fr; align-items: start; } .buybox { position: sticky; top: 84px; } }
+  .carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; border-radius: var(--radius); scrollbar-width: none; background: #ebebe7; }
   .carousel::-webkit-scrollbar { display: none; }
-  .carousel img { flex: none; width: 100%; aspect-ratio: 1; object-fit: cover; scroll-snap-align: start; border-radius: 16px; cursor: zoom-in; }
-  .carousel .noph { flex: none; width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 60px; color: var(--text-3); }
-  .dots { display: flex; justify-content: center; gap: 6px; margin: 8px 0; }
-  .dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--border); }
-  .dots i.on { background: var(--accent); }
-  .dwrap { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  @media (min-width: 760px) { .dwrap { grid-template-columns: 1.1fr 1fr; align-items: start; } }
-  .dinfo h1 { font-size: 24px; margin: 0 0 6px; letter-spacing: -.01em; }
-  .dinfo .price { font-size: 28px; font-weight: 700; margin: 4px 0 10px; }
-  .specs { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 14px; margin: 10px 0 14px; }
-  .specs dt { color: var(--text-3); } .specs dd { margin: 0; }
-  .dinfo .desc { white-space: pre-line; color: var(--text-2); margin-bottom: 14px; }
-  .dinfo .acts { display: flex; gap: 8px; flex-wrap: wrap; }
-  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none; align-items: center; justify-content: center; z-index: 10; cursor: zoom-out; }
+  .carousel img { flex: none; width: 100%; aspect-ratio: 1; object-fit: cover; scroll-snap-align: start; border-radius: var(--radius); cursor: zoom-in; }
+  .carousel .noph { flex: none; width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 70px; color: var(--text-3); }
+  .thumbs { display: flex; gap: 6px; margin-top: 8px; overflow-x: auto; }
+  .thumbs img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; }
+  .thumbs img.on { border-color: var(--accent); }
+  .buybox { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+  .buybox .cat-l { font-size: 12px; color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+  .buybox h1 { font-size: 24px; font-weight: 700; margin: 6px 0 10px; text-transform: none; letter-spacing: 0; font-family: var(--body); line-height: 1.25; }
+  .buybox .price { font-family: var(--display); font-size: 44px; font-weight: 800; line-height: 1; margin: 6px 0 2px; }
+  .buybox .was { font-size: 13px; color: var(--text-3); margin-bottom: 12px; min-height: 18px; }
+  .buybox .was b { color: var(--ok); }
+  .specs { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 14px; margin: 14px 0; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .specs dt { color: var(--text-3); } .specs dd { margin: 0; font-weight: 500; }
+  .buybox .desc { white-space: pre-line; color: var(--text-2); margin-bottom: 16px; font-size: 14px; }
+  .buybox .acts { display: grid; gap: 8px; }
+  .buybox .acts .row { display: flex; gap: 8px; }
+  .buybox .acts .row .btn { flex: 1; }
+  .fine { font-size: 12px; color: var(--text-3); margin-top: 12px; white-space: pre-line; }
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.92); display: none; align-items: center; justify-content: center; z-index: 50; cursor: zoom-out; }
   .lightbox.open { display: flex; } .lightbox img { max-width: 96vw; max-height: 92vh; border-radius: 8px; }
-  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 8px 14px; border-radius: 10px; font-size: 13px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 20; }
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 9px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 60; }
   .toast.show { opacity: 1; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 0 14px; }
+    .top .wrap { height: 58px; }
+    .brand .name { font-size: 24px; } .brand .by { display: none; }
+    .nav a:not(.btn) { display: none; }
+    .hero .wrap { grid-template-columns: 1fr; padding: 36px 14px 30px; gap: 20px; }
+    .hero p { font-size: 16px; }
+    .stats { grid-template-columns: repeat(3, 1fr); gap: 6px; } .stat { padding: 10px; } .stat .v { font-size: 26px; } .stat .l { font-size: 10px; }
+    .trust .wrap { gap: 12px; font-size: 12px; justify-content: flex-start; }
+    .sec-head h2 { font-size: 28px; }
+    .cats { grid-template-columns: repeat(2, 1fr); gap: 8px; } .cat .t h3 { font-size: 20px; }
+    .toolbar { top: 58px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .card .price { font-size: 20px; }
+    .buybox { padding: 16px; } .buybox .price { font-size: 38px; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="cover" id="cover"><div class="in"><h1 id="storeName">Shop</h1><p id="tagline"></p><div class="loc" id="loc"></div><div class="contact" id="contact"></div></div></div>
-  <div id="listView">
-    <div class="toolbar"><input type="search" id="q" placeholder="Search…"><select id="sort"><option value="new">Newest</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option></select></div>
-    <div class="chips" id="chips"></div>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#" id="brandLink"><span class="name">The <b>Soln</b></span><span class="by">by Ron's Retail LLC</span></a>
+  <nav class="nav"><a href="#shop">Shop</a><a href="#about">About</a><a href="#contact">Contact</a><span id="navCta"></span></nav>
+</div></header>
+
+<div id="listView">
+  <div class="hero" id="hero"><div class="wrap">
+    <div>
+      <h1 id="heroTitle">Contractor-grade <em>surplus.</em><br>Brand new. Way under retail.</h1>
+      <p id="heroText">Windows, doors, flooring and tools straight from the big-box aisle, sold at about 40% off. Everything is new and never installed.</p>
+      <div class="cta"><a class="btn primary lg" href="#shop">Browse inventory</a><span id="heroContact"></span></div>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div></div>
+  <div class="trust" id="trust"><div class="wrap"></div></div>
+
+  <section id="catsSec" class="wrap"><div class="sec-head"><h2>Shop by category<small id="catsSub"></small></h2></div><div class="cats" id="cats"></div></section>
+
+  <section id="newSec" class="wrap"><div class="sec-head"><h2>Just in<small>Latest additions</small></h2><a class="btn sm" href="#shop">See everything</a></div><div class="grid" id="newGrid"></div></section>
+
+  <section id="shop" class="wrap">
+    <div class="sec-head"><h2>All inventory<small>Tap any item for photos, details and how to buy</small></h2></div>
+    <div class="toolbar"><input type="search" id="q" placeholder="Search size, brand, model…"><select id="sort"><option value="new">Newest</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option></select><div class="chips" id="chips"></div></div>
     <div class="count" id="count"></div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" hidden></div>
-    <div class="section" id="soldSec" hidden><h2>Recently sold</h2><div class="strip" id="soldStrip"></div></div>
-    <div class="section" id="aboutSec" hidden><div class="about" id="about"></div></div>
-  </div>
-  <div class="detail" id="detail"></div>
-  <footer id="foot"></footer>
+  </section>
+
+  <section id="soldSec" class="wrap" hidden><div class="sec-head"><h2>Recently sold<small>Gone, but more comes in every week</small></h2></div><div class="strip" id="soldStrip"></div></section>
+
+  <section id="about" class="wrap"><div class="about-grid" id="aboutGrid"></div></section>
 </div>
+
+<div class="detail wrap" id="detail"></div>
+
+<footer id="contact"><div class="wrap">
+  <div class="brand"><span class="name">The <b>Soln</b></span><span class="by">by Ron's Retail LLC</span></div>
+  <div id="footContact"></div>
+  <div id="foot"></div>
+</div></footer>
 <div class="lightbox" id="lightbox"><img id="lightImg" alt=""></div>
 <div class="toast" id="toast"></div>
+
 <script>
 (async () => {
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
-  const money = n => '$' + Number(n || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const money = n => '$' + Number(n || 0).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   let toastT; const toast = m => { const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2000); };
+  const ICON = { Windows: '🪟', Doors: '🚪', Flooring: '🪵', Tools: '🔧', 'Tool storage': '🧰', Appliances: '🧹', Plumbing: '🚿', HVAC: '🌡️', 'Smart home': '📷', 'Kitchen & bath': '🛁', 'Outdoor power': '🚜', Electrical: '⚡', Lighting: '💡', Hardware: '🔩' };
+
   let data = null;
   try { const r = await fetch('catalog.json?t=' + Date.now(), { cache: 'no-store' }); if (r.ok) data = await r.json(); } catch (e) {}
-  if (!data || !Array.isArray(data.items)) { $('#empty').hidden = false; $('#empty').textContent = 'Nothing listed yet. Check back soon.'; $('.toolbar').hidden = true; return; }
-  const st = data.store || {};
-  // theme
-  const root = document.documentElement; root.dataset.theme = st.theme || 'ocean';
-  const mq = window.matchMedia('(prefers-color-scheme: dark)');
-  const setMode = () => { root.dataset.mode = st.theme === 'midnight' ? 'dark' : (st.mode === 'dark' || (st.mode !== 'light' && mq.matches)) ? 'dark' : 'light'; $('meta[name=theme-color]').setAttribute('content', getComputedStyle(root).getPropertyValue('--accent').trim()); };
-  setMode(); mq.addEventListener('change', setMode);
-  // header
-  document.title = st.name || 'Shop';
-  $('#storeName').textContent = st.name || 'Shop'; $('#tagline').textContent = st.tagline || ''; $('#loc').textContent = st.location ? '📍 ' + st.location : '';
-  if (st.banner) $('#cover').insertAdjacentHTML('afterbegin', `<img src="${esc(st.banner)}" alt="">`);
+  const st = (data && data.store) || {};
+  if (st.banner) $('#hero').insertAdjacentHTML('afterbegin', `<img class="bg" src="${esc(st.banner)}" alt="">`);
+  if (st.tagline && st.tagline.length > 20) $('#heroText').textContent = st.tagline;
   const phoneDigits = (st.phone || '').replace(/[^\d+]/g, '');
-  const contact = [];
-  if (st.email) contact.push(`<a class="btn primary" href="mailto:${esc(st.email)}?subject=${encodeURIComponent('Question about ' + (st.name || 'your shop'))}">✉️ Email</a>`);
-  if (st.phone) contact.push(`<a class="btn" href="sms:${esc(phoneDigits)}">💬 Text</a>`);
-  if (st.instagram) contact.push(`<a class="btn" href="https://instagram.com/${esc(st.instagram.replace(/^@/, ''))}" target="_blank" rel="noopener">📸 @${esc(st.instagram.replace(/^@/, ''))}</a>`);
-  $('#contact').innerHTML = contact.join('');
-  // about / policies
-  const panels = [];
-  if (st.about) panels.push(`<div class="panel"><h3>About</h3>${esc(st.about)}</div>`);
-  if (st.policies) panels.push(`<div class="panel"><h3>Shipping &amp; pickup</h3>${esc(st.policies)}</div>`);
-  if (panels.length) { $('#about').innerHTML = panels.join(''); $('#aboutSec').hidden = false; }
-  // sold strip
-  const sold = (data.sold || []).filter(s => s && s.name);
-  if (sold.length) { $('#soldSec').hidden = false; $('#soldStrip').innerHTML = sold.map(s => `<div class="sold"><div class="ph">${s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : '🏷️'}<span>Sold</span></div><div class="nm">${esc(s.name)}</div></div>`).join(''); }
-  // items
-  const items = data.items.filter(i => i && i.name).map(i => Object.assign({ photos: [] }, i, { photos: Array.isArray(i.photos) ? i.photos : (i.photo ? [i.photo] : []) }));
-  const cats = [...new Set(items.map(i => i.category).filter(Boolean))].sort();
+  const contactBtns = cls => [st.phone ? `<a class="btn ${cls}" href="sms:${esc(phoneDigits)}">💬 Text us</a>` : '', st.email ? `<a class="btn ${cls}" href="mailto:${esc(st.email)}">✉️ Email</a>` : '', st.instagram ? `<a class="btn ${cls}" href="https://instagram.com/${esc(st.instagram.replace(/^@/, ''))}" target="_blank" rel="noopener">📸 Instagram</a>` : ''].filter(Boolean).join('');
+  $('#heroContact').innerHTML = contactBtns('ghost lg');
+  $('#navCta').innerHTML = st.phone ? `<a class="btn primary sm" href="sms:${esc(phoneDigits)}">Text us</a>` : (st.email ? `<a class="btn primary sm" href="mailto:${esc(st.email)}">Email</a>` : '');
+  $('#footContact').innerHTML = [st.location ? `📍 ${esc(st.location)}` : '', st.phone ? `📞 ${esc(st.phone)}` : '', st.email ? `✉️ ${esc(st.email)}` : ''].filter(Boolean).join(' &nbsp;·&nbsp; ');
+  $('#trust .wrap').innerHTML = ['Brand new, never installed', st.location ? `Pickup in ${esc(st.location)}` : 'Local pickup', 'Cash, Venmo or Zelle', 'Volume pricing on lots'].map(t => `<span>${t}</span>`).join('');
+
+  const items = ((data && data.items) || []).filter(i => i && i.name).map(i => Object.assign({ photos: [] }, i, { photos: Array.isArray(i.photos) ? i.photos : (i.photo ? [i.photo] : []) }));
+  const sold = ((data && data.sold) || []).filter(s => s && s.name);
+  if (!items.length) { $('#catsSec').hidden = true; $('#newSec').hidden = true; $('#empty').hidden = false; $('#empty').textContent = 'Nothing listed right now. Check back soon, or text us for what is coming.'; }
+  const units = items.reduce((a, i) => a + (i.qty || 1), 0); const cats = [...new Set(items.map(i => i.category).filter(Boolean))].sort();
+  const retailOf = i => { const m = String(i.desc || '').match(/retail \$([\d,]+)/i); return m ? parseFloat(m[1].replace(/,/g, '')) : 0; };
+  const saves = items.map(i => { const r = retailOf(i); return r > i.price ? (r - i.price) / r : null; }).filter(x => x != null);
+  const avgSave = saves.length ? Math.round(saves.reduce((a, b) => a + b, 0) / saves.length * 100) : null;
+  $('#stats').innerHTML = [[units, 'units in stock'], [cats.length, 'categories'], [(avgSave || 40) + '%', 'avg. below retail']].map(([v, l]) => `<div class="stat"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
+  $('#catsSub').textContent = `${items.length} listings across ${cats.length} categor${cats.length === 1 ? 'y' : 'ies'}`;
+  $('#cats').innerHTML = cats.map(c => { const list = items.filter(i => i.category === c); const ph = list.map(i => i.photos[0]).find(Boolean); const from = Math.min(...list.map(i => i.price)); const n = list.reduce((a, i) => a + (i.qty || 1), 0); return `<a class="cat" href="#shop" data-cat="${esc(c)}">${ph ? `<img src="${esc(ph)}" alt="" loading="lazy">` : `<div class="ico">${ICON[c] || '🏷️'}</div>`}<div class="ov"></div><div class="t"><h3>${esc(c)}</h3><div class="m">${n} unit${n === 1 ? '' : 's'} · from <b>${money(from)}</b></div></div></a>`; }).join('');
+  $('#cats').addEventListener('click', e => { const a = e.target.closest('[data-cat]'); if (a) setCat(a.dataset.cat); });
+
+  const cardHtml = (i, isNew) => `
+      <div class="card" data-id="${esc(i.id)}">
+        <div class="ph">${i.photos[0] ? `<img src="${esc(i.photos[0])}" alt="${esc(i.name)}" loading="lazy">` : (ICON[i.category] || '🏷️')}${isNew ? '<span class="new">NEW</span>' : ''}${i.photos.length > 1 ? `<span class="n">${i.photos.length} photos</span>` : ''}</div>
+        <div class="body"><div class="cat-l">${esc(i.category || '')}${i.brand ? ' · ' + esc(i.brand) : ''}</div><div class="name">${esc(i.name)}</div><div class="meta">${[i.size ? 'Size ' + i.size : '', i.qty > 1 ? `${i.qty} available` : ''].filter(Boolean).map(esc).join(' · ')}</div><div class="price-row"><span class="price">${money(i.price)}</span>${i.condition ? `<span class="cond">${esc(i.condition)}</span>` : ''}</div></div>
+      </div>`;
+  const newest = items.slice().sort((a, b) => (b.added || '').localeCompare(a.added || '')).slice(0, 8);
+  $('#newGrid').innerHTML = newest.map(i => cardHtml(i, true)).join('');
+  if (items.length <= 8) $('#newSec').hidden = true;
+
   let cat = '', q = '', sortBy = 'new';
-  $('#chips').innerHTML = cats.length > 1 ? `<span class="chip on" data-cat="">All</span>` + cats.map(c => `<span class="chip" data-cat="${esc(c)}">${esc(c)}</span>`).join('') : '';
-  $('#chips').addEventListener('click', e => { const ch = e.target.closest('.chip'); if (!ch) return; cat = ch.dataset.cat; document.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x === ch)); renderList(); });
+  $('#chips').innerHTML = `<span class="chip on" data-chip="">All</span>` + cats.map(c => `<span class="chip" data-chip="${esc(c)}">${esc(c)}</span>`).join('');
+  function setCat(c) { cat = c; document.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x.dataset.chip === c)); renderList(); }
+  $('#chips').addEventListener('click', e => { const ch = e.target.closest('.chip'); if (ch) setCat(ch.dataset.chip); });
   $('#q').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); renderList(); });
   $('#sort').addEventListener('change', e => { sortBy = e.target.value; renderList(); });
-  const wantLink = i => { const subject = encodeURIComponent(`Interested in: ${i.name} (${money(i.price)})`); if (st.email) return `<a class="btn primary" href="mailto:${esc(st.email)}?subject=${subject}">I want this</a>`; if (st.phone) return `<a class="btn primary" href="sms:${esc(phoneDigits)}?body=${subject}">I want this</a>`; return ''; };
   function renderList() {
     let list = items.filter(i => (!cat || i.category === cat) && (!q || `${i.name} ${i.brand} ${i.size} ${i.category} ${i.condition} ${i.desc}`.toLowerCase().includes(q)));
     if (sortBy === 'lo') list.sort((a, b) => a.price - b.price); else if (sortBy === 'hi') list.sort((a, b) => b.price - a.price); else list.sort((a, b) => (b.added || '').localeCompare(a.added || ''));
-    $('#grid').innerHTML = list.map(i => `
-      <div class="card" data-id="${esc(i.id)}">
-        <div class="ph">${i.photos[0] ? `<img src="${esc(i.photos[0])}" alt="${esc(i.name)}" loading="lazy">` : '🏷️'}${i.photos.length > 1 ? `<span class="n">${i.photos.length} photos</span>` : ''}</div>
-        <div class="body"><div class="name">${esc(i.name)}</div><div class="meta">${[i.brand, i.size ? 'Size ' + i.size : '', i.condition].filter(Boolean).map(esc).join(' · ')}</div><div class="price">${money(i.price)}</div></div>
-      </div>`).join('');
-    $('#count').textContent = `${list.length} item${list.length === 1 ? '' : 's'}${cat ? ' in ' + cat : ''}`;
-    $('#empty').hidden = list.length > 0; $('#empty').textContent = items.length ? 'No items match.' : 'Nothing listed right now. Check back soon.';
+    $('#grid').innerHTML = list.map(i => cardHtml(i, false)).join('');
+    const n = list.reduce((a, i) => a + (i.qty || 1), 0);
+    $('#count').textContent = `${list.length} listing${list.length === 1 ? '' : 's'} · ${n} unit${n === 1 ? '' : 's'}${cat ? ' in ' + cat : ''}`;
+    if (items.length) { $('#empty').hidden = list.length > 0; $('#empty').textContent = 'No items match.'; }
   }
-  $('#grid').addEventListener('click', e => { const c = e.target.closest('.card[data-id]'); if (c) location.hash = 'item=' + encodeURIComponent(c.dataset.id); });
+  document.addEventListener('click', e => { const c = e.target.closest('.card[data-id]'); if (c) location.hash = 'item=' + encodeURIComponent(c.dataset.id); });
+
+  if (sold.length) { $('#soldSec').hidden = false; $('#soldStrip').innerHTML = sold.map(s => `<div class="sold"><div class="ph">${s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : '🏷️'}<span>Sold</span></div><div class="nm">${esc(s.name)}</div></div>`).join(''); }
+  $('#aboutGrid').innerHTML = [
+    `<div class="panel dark"><h3>About</h3>${esc(st.about || 'We buy contractor surplus and overstock, brand new and never installed, and pass the savings on. Inventory changes weekly.')}</div>`,
+    `<div class="panel"><h3>Pickup &amp; payment</h3>${esc(st.policies || 'Local pickup, buyer loads and transports. Cash, Venmo or Zelle. Ask about delivery on larger orders.')}</div>`,
+    `<div class="panel"><h3>Get in touch</h3>Fastest way is a text with the item name. Volume buyers: ask about pricing on full lots.<div class="acts">${contactBtns('')}</div></div>`
+  ].join('');
+
   function renderDetail(id) {
     const i = items.find(x => x.id === id); const d = $('#detail');
     if (!i) { d.classList.remove('open'); $('#listView').hidden = false; return; }
-    const photos = i.photos;
-    d.innerHTML = `<button class="btn ghost back" id="backBtn">‹ Back to all items</button>
+    const retailN = retailOf(i);
+    const subject = encodeURIComponent(`Interested in: ${i.name} (${money(i.price)})`);
+    const want = st.phone ? `<a class="btn primary lg" href="sms:${esc(phoneDigits)}?body=${subject}">Text about this item</a>` : (st.email ? `<a class="btn primary lg" href="mailto:${esc(st.email)}?subject=${subject}">Email about this item</a>` : '');
+    const second = st.phone && st.email ? `<a class="btn" href="mailto:${esc(st.email)}?subject=${subject}">Email instead</a>` : '';
+    d.innerHTML = `<div class="crumb"><a href="#">Home</a> › <a href="#shop" data-crumb="${esc(i.category)}">${esc(i.category || 'Inventory')}</a> › ${esc(i.name)}</div>
       <div class="dwrap">
-        <div><div class="carousel" id="carousel">${photos.length ? photos.map(p => `<img src="${esc(p)}" alt="${esc(i.name)}" data-full="${esc(p)}">`).join('') : '<div class="noph">🏷️</div>'}</div>${photos.length > 1 ? `<div class="dots" id="dots">${photos.map((_, k) => `<i class="${k ? '' : 'on'}"></i>`).join('')}</div>` : ''}</div>
-        <div class="dinfo">
+        <div><div class="carousel" id="carousel">${i.photos.length ? i.photos.map(p => `<img src="${esc(p)}" alt="${esc(i.name)}" data-full="${esc(p)}">`).join('') : `<div class="noph">${ICON[i.category] || '🏷️'}</div>`}</div>${i.photos.length > 1 ? `<div class="thumbs" id="thumbs">${i.photos.map((p, k) => `<img src="${esc(p)}" alt="" class="${k ? '' : 'on'}" data-k="${k}">`).join('')}</div>` : ''}</div>
+        <div class="buybox">
+          <div class="cat-l">${esc(i.category || '')}${i.brand ? ' · ' + esc(i.brand) : ''}</div>
           <h1>${esc(i.name)}</h1>
           ${i.condition ? `<span class="cond">${esc(i.condition)}</span>` : ''}
           <div class="price">${money(i.price)}</div>
-          <dl class="specs">${[['Brand', i.brand], ['Size', i.size], ['Category', i.category], ['Available', i.qty > 1 ? i.qty : '']].filter(x => x[1]).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+          <div class="was">${retailN > i.price ? `Retail ${money(retailN)} · <b>you save ${money(retailN - i.price)} (${Math.round((1 - i.price / retailN) * 100)}%)</b>` : ''}</div>
+          <dl class="specs">${[['Brand', i.brand], ['Size', i.size], ['Condition', i.condition], ['Available', i.qty > 1 ? i.qty + ' units' : '1 unit']].filter(x => x[1]).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
           ${i.desc ? `<div class="desc">${esc(i.desc)}</div>` : ''}
-          <div class="acts">${wantLink(i)}${i.url ? `<a class="btn" href="${esc(i.url)}" target="_blank" rel="noopener">View listing</a>` : ''}<button class="btn" id="shareBtn">Share</button></div>
+          <div class="acts">${want}<div class="row">${second}${i.url ? `<a class="btn" href="${esc(i.url)}" target="_blank" rel="noopener">View listing</a>` : ''}<button class="btn" id="shareBtn">Share</button></div></div>
+          <div class="fine">${esc(st.policies || 'Local pickup. Cash, Venmo or Zelle.')}</div>
         </div>
       </div>`;
     $('#listView').hidden = true; d.classList.add('open'); window.scrollTo(0, 0);
-    document.title = `${i.name} · ${st.name || 'Shop'}`;
-    $('#backBtn').onclick = () => { if (history.length > 1) history.back(); else location.hash = ''; };
-    $('#shareBtn').onclick = async () => { const url = location.href; const text = `${i.name} – ${money(i.price)}`; try { if (navigator.share) await navigator.share({ title: i.name, text, url }); else { await navigator.clipboard.writeText(url); toast('Link copied'); } } catch (e) {} };
-    const car = $('#carousel'); if (car && photos.length > 1) car.addEventListener('scroll', () => { const k = Math.round(car.scrollLeft / car.clientWidth); document.querySelectorAll('#dots i').forEach((x, n) => x.classList.toggle('on', n === k)); }, { passive: true });
-    d.querySelectorAll('img[data-full]').forEach(img => img.onclick = () => { $('#lightImg').src = img.dataset.full; $('#lightbox').classList.add('open'); });
+    document.title = `${i.name} · The Soln`;
+    $('#shareBtn').onclick = async () => { const url = location.href; try { if (navigator.share) await navigator.share({ title: i.name, text: `${i.name} – ${money(i.price)}`, url }); else { await navigator.clipboard.writeText(url); toast('Link copied'); } } catch (e) {} };
+    const car = $('#carousel'); const th = $('#thumbs');
+    if (th) { th.addEventListener('click', e => { const t = e.target.closest('[data-k]'); if (!t) return; car.scrollTo({ left: car.clientWidth * +t.dataset.k, behavior: 'smooth' }); }); car.addEventListener('scroll', () => { const k = Math.round(car.scrollLeft / car.clientWidth); th.querySelectorAll('img').forEach((x, n) => x.classList.toggle('on', n === k)); }, { passive: true }); }
+    d.querySelectorAll('.carousel img[data-full]').forEach(img => img.onclick = () => { $('#lightImg').src = img.dataset.full; $('#lightbox').classList.add('open'); });
+    d.querySelector('[data-crumb]').onclick = e => { e.preventDefault(); location.hash = ''; setTimeout(() => { setCat(i.category || ''); $('#shop').scrollIntoView(); }, 50); };
   }
-  function route() { const m = location.hash.match(/^#item=(.+)$/); if (m) renderDetail(decodeURIComponent(m[1])); else { $('#detail').classList.remove('open'); $('#listView').hidden = false; document.title = st.name || 'Shop'; } }
+  function route() { const m = location.hash.match(/^#item=(.+)$/); if (m) renderDetail(decodeURIComponent(m[1])); else { $('#detail').classList.remove('open'); $('#listView').hidden = false; document.title = 'The Soln · Contractor-grade surplus'; } }
   window.addEventListener('hashchange', route);
   $('#lightbox').addEventListener('click', () => $('#lightbox').classList.remove('open'));
+  $('#brandLink').onclick = e => { e.preventDefault(); location.hash = ''; window.scrollTo({ top: 0, behavior: 'smooth' }); };
   renderList(); route();
-  if (data.updated) $('#foot').textContent = `Updated ${new Date(data.updated).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`;
+  $('#foot').textContent = `${data && data.updated ? 'Inventory updated ' + new Date(data.updated).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' : ''}© ${new Date().getFullYear()} Ron's Retail LLC`;
 })();
 </script>
 </body>
