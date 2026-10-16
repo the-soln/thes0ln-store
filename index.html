@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Soln · Contractor-grade surplus</title>
-<meta name="description" content="Brand-new windows, doors, flooring and tools at about 40% off retail. Pickup in Easton or Philadelphia, PA.">
+<meta name="description" content="Brand-new windows, doors, flooring and tools at about 40% off retail. Pickup in Philadelphia, PA.">
 <meta property="og:title" content="The Soln · Contractor-grade surplus">
-<meta property="og:description" content="Brand-new windows, doors, flooring and tools at about 40% off retail. Pickup in Easton or Philadelphia, PA.">
+<meta property="og:description" content="Brand-new windows, doors, flooring and tools at about 40% off retail. Pickup in Philadelphia, PA.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0f1115">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +45,9 @@
   .hero { background: var(--ink); color: #fff; position: relative; overflow: hidden; }
   .hero::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, transparent 0 28px, rgba(255,255,255,.025) 28px 30px); }
   .hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .32; }
-  .hero .wrap { position: relative; padding: 56px 20px 46px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px; align-items: end; }
+  .hero .wrap { position: relative; padding: 56px 20px 46px; max-width: 900px; }
+  .hero .pick { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 6px 14px 6px 10px; font-weight: 600; font-size: 14px; margin-bottom: 18px; }
+  .hero .pick b { color: var(--accent); }
   .hero h1 { font-size: clamp(44px, 7vw, 84px); font-weight: 800; }
   .hero h1 em { font-style: normal; color: var(--accent); }
   .hero p { font-size: 18px; color: #c9cedb; max-width: 560px; margin: 14px 0 22px; }
@@ -159,9 +161,8 @@
     .top .wrap { height: 58px; }
     .brand .name { font-size: 24px; } .brand .by { display: none; }
     .nav a:not(.btn) { display: none; }
-    .hero .wrap { grid-template-columns: 1fr; padding: 36px 14px 30px; gap: 20px; }
+    .hero .wrap { padding: 32px 14px 28px; }
     .hero p { font-size: 16px; }
-    .stats { grid-template-columns: repeat(3, 1fr); gap: 6px; } .stat { padding: 10px; } .stat .v { font-size: 26px; } .stat .l { font-size: 10px; }
     .trust .wrap { gap: 12px; font-size: 12px; justify-content: flex-start; }
     .sec-head h2 { font-size: 28px; }
     .cats { grid-template-columns: repeat(2, 1fr); gap: 8px; } .cat .t h3 { font-size: 20px; }
@@ -180,12 +181,10 @@
 
 <div id="listView">
   <div class="hero" id="hero"><div class="wrap">
-    <div>
-      <h1 id="heroTitle">Contractor-grade <em>surplus.</em><br>Brand new. Way under retail.</h1>
-      <p id="heroText">Windows, doors, flooring and tools straight from the big-box aisle, sold at about 40% off. Everything is new and never installed.</p>
-      <div class="cta"><a class="btn primary lg" href="#shop">Browse inventory</a><span id="heroContact"></span></div>
-    </div>
-    <div class="stats" id="stats"></div>
+    <div class="pick">📍 Pickup in <b id="heroLoc">Philadelphia, PA</b></div>
+    <h1 id="heroTitle">Contractor-grade <em>surplus.</em><br>Brand new. Way under retail.</h1>
+    <p id="heroText">Windows, doors, flooring and tools straight from the big-box aisle, sold at about 40% off. Everything is new and never installed.</p>
+    <div class="cta"><a class="btn primary lg" href="#shop">Browse inventory</a><span id="heroContact"></span></div>
   </div></div>
   <div class="trust" id="trust"><div class="wrap"></div></div>
 
@@ -233,17 +232,15 @@
   const contactBtns = cls => [st.phone ? `<a class="btn ${cls}" href="sms:${esc(phoneDigits)}">💬 Text us</a>` : '', st.email ? `<a class="btn ${cls}" href="mailto:${esc(st.email)}">✉️ Email</a>` : '', st.instagram ? `<a class="btn ${cls}" href="https://instagram.com/${esc(st.instagram.replace(/^@/, ''))}" target="_blank" rel="noopener">📸 Instagram</a>` : ''].filter(Boolean).join('');
   $('#heroContact').innerHTML = contactBtns('ghost lg');
   $('#navCta').innerHTML = st.phone ? `<a class="btn primary sm" href="sms:${esc(phoneDigits)}">Text us</a>` : (st.email ? `<a class="btn primary sm" href="mailto:${esc(st.email)}">Email</a>` : '');
-  $('#footContact').innerHTML = [st.location ? `📍 ${esc(st.location)}` : '', st.phone ? `📞 ${esc(st.phone)}` : '', st.email ? `✉️ ${esc(st.email)}` : ''].filter(Boolean).join(' &nbsp;·&nbsp; ');
-  $('#trust .wrap').innerHTML = ['Brand new, never installed', st.location ? `Pickup in ${esc(st.location)}` : 'Local pickup', 'Cash only', 'Volume pricing on lots'].map(t => `<span>${t}</span>`).join('');
+  $('#footContact').innerHTML = [`📍 Pickup in ${esc(st.location || 'Philadelphia, PA')}`, st.phone ? `📞 ${esc(st.phone)}` : '', st.email ? `✉️ ${esc(st.email)}` : ''].filter(Boolean).join(' &nbsp;·&nbsp; ');
+  const loc = st.location || 'Philadelphia, PA'; $('#heroLoc').textContent = loc;
+  $('#trust .wrap').innerHTML = ['Brand new, never installed', `Pickup in ${esc(loc)}`, 'Cash only', 'Volume pricing on lots'].map(t => `<span>${t}</span>`).join('');
 
   const items = ((data && data.items) || []).filter(i => i && i.name).map(i => Object.assign({ photos: [] }, i, { photos: Array.isArray(i.photos) ? i.photos : (i.photo ? [i.photo] : []) }));
   const sold = ((data && data.sold) || []).filter(s => s && s.name);
   if (!items.length) { $('#catsSec').hidden = true; $('#newSec').hidden = true; $('#empty').hidden = false; $('#empty').textContent = 'Nothing listed right now. Check back soon, or text us for what is coming.'; }
   const units = items.reduce((a, i) => a + (i.qty || 1), 0); const cats = [...new Set(items.map(i => i.category).filter(Boolean))].sort();
   const retailOf = i => { const m = String(i.desc || '').match(/retail \$([\d,]+)/i); return m ? parseFloat(m[1].replace(/,/g, '')) : 0; };
-  const saves = items.map(i => { const r = retailOf(i); return r > i.price ? (r - i.price) / r : null; }).filter(x => x != null);
-  const avgSave = saves.length ? Math.round(saves.reduce((a, b) => a + b, 0) / saves.length * 100) : null;
-  $('#stats').innerHTML = [[units, 'units in stock'], [cats.length, 'categories'], [(avgSave || 40) + '%', 'avg. below retail']].map(([v, l]) => `<div class="stat"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
   $('#catsSub').textContent = `${items.length} listings across ${cats.length} categor${cats.length === 1 ? 'y' : 'ies'}`;
   $('#cats').innerHTML = cats.map(c => { const list = items.filter(i => i.category === c); const ph = list.map(i => i.photos[0]).find(Boolean); const from = Math.min(...list.map(i => i.price)); const n = list.reduce((a, i) => a + (i.qty || 1), 0); return `<a class="cat" href="#shop" data-cat="${esc(c)}">${ph ? `<img src="${esc(ph)}" alt="" loading="lazy">` : `<div class="ico">${ICON[c] || '🏷️'}</div>`}<div class="ov"></div><div class="t"><h3>${esc(c)}</h3><div class="m">${n} unit${n === 1 ? '' : 's'} · from <b>${money(from)}</b></div></div></a>`; }).join('');
   $('#cats').addEventListener('click', e => { const a = e.target.closest('[data-cat]'); if (a) setCat(a.dataset.cat); });
@@ -276,7 +273,7 @@
   if (sold.length) { $('#soldSec').hidden = false; $('#soldStrip').innerHTML = sold.map(s => `<div class="sold"><div class="ph">${s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : '🏷️'}<span>Sold</span></div><div class="nm">${esc(s.name)}</div></div>`).join(''); }
   $('#aboutGrid').innerHTML = [
     `<div class="panel dark"><h3>About</h3>${esc(st.about || 'We buy contractor surplus and overstock, brand new and never installed, and pass the savings on. Inventory changes weekly.')}</div>`,
-    `<div class="panel"><h3>Pickup &amp; payment</h3>${esc(st.policies || 'Local pickup, buyer loads and transports. Cash only. Ask about delivery on larger orders.')}</div>`,
+    `<div class="panel"><h3>Pickup &amp; payment</h3>${esc(st.policies || `Pickup in ${st.location || 'Philadelphia, PA'}. Buyer loads and transports. Cash only. Ask about delivery on larger orders.`)}</div>`,
     `<div class="panel"><h3>Get in touch</h3>Fastest way is a text with the item name. Volume buyers: ask about pricing on full lots.<div class="acts">${contactBtns('')}</div></div>`
   ].join('');
 
