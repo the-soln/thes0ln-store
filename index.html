@@ -161,6 +161,21 @@
   .fine { font-size: 13px; color: var(--text-2); margin-top: 12px; white-space: pre-line; }
   .lightbox { position: fixed; inset: 0; background: rgba(5,8,16,.95); display: none; align-items: center; justify-content: center; z-index: 50; cursor: zoom-out; }
   .lightbox.open { display: flex; } .lightbox img { max-width: 96vw; max-height: 92vh; border: 2px solid var(--accent); box-shadow: var(--glow); }
+  .modal { position: fixed; inset: 0; background: rgba(5,8,16,.8); display: none; align-items: center; justify-content: center; z-index: 55; padding: 16px; }
+  .modal.open { display: flex; }
+  .dialog { background: var(--panel); border: 2px solid var(--accent); box-shadow: var(--glow); border-radius: var(--radius); width: 100%; max-width: 520px; padding: 22px; max-height: 92vh; overflow-y: auto; }
+  .dialog h3 { font-size: 18px; margin-bottom: 4px; }
+  .dialog .sub { color: var(--text-2); font-size: 14px; margin-bottom: 14px; }
+  .dialog label { display: block; font-family: var(--pixel); font-size: 12px; color: var(--text-2); margin: 10px 0 4px; letter-spacing: .04em; }
+  .dialog input, .dialog select, .dialog textarea { width: 100%; border: 2px solid var(--line-2); background: var(--bg-2); border-radius: var(--radius); padding: 9px 11px; font: 500 14px var(--body); color: var(--text); }
+  .dialog input:focus, .dialog select:focus, .dialog textarea:focus { outline: none; border-color: var(--accent); box-shadow: var(--glow); }
+  .dialog textarea { min-height: 70px; resize: vertical; }
+  .dialog .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .dialog .acts { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+  .dialog .note { font-size: 12px; color: var(--text-2); margin-top: 12px; border-top: 1px dashed var(--line-2); padding-top: 10px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 2px; }
+  .step { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; font-size: 12px; color: var(--text-2); }
+  .step b { display: block; font-family: var(--head); color: var(--accent); font-size: 14px; margin-bottom: 4px; }
   .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--accent-ink); padding: 9px 16px; border-radius: 4px; font-family: var(--pixel); font-size: 12px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 60; box-shadow: var(--glow); }
   .toast.show { opacity: 1; }
 
@@ -221,6 +236,17 @@
   <div id="footContact"></div>
   <div id="foot"></div>
 </div></footer>
+<div class="modal" id="apptModal"><form class="dialog" id="apptForm">
+  <h3>Request a pickup appointment</h3>
+  <div class="sub">Tell us what you want and when you're free. We email you a confirmation, then call to lock in the time.</div>
+  <label>Item</label><input name="item" id="apptItem" placeholder="What are you interested in?">
+  <div class="two"><div><label>Your name</label><input name="name" required></div><div><label>Phone (for our call back)</label><input name="phone" type="tel" required placeholder="555 123 4567"></div></div>
+  <label>Your email</label><input name="email" type="email" required placeholder="you@example.com">
+  <div class="two"><div><label>Preferred day</label><select name="day"><option>Any day</option><option>Weekday</option><option>Saturday</option><option>Sunday</option></select></div><div><label>Preferred time</label><select name="time"><option>Any time</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div></div>
+  <label>Quantity / notes</label><textarea name="notes" placeholder="How many, any questions, best time to call…"></textarea>
+  <div class="acts"><button type="button" class="btn" id="apptCancel">Cancel</button><button type="submit" class="btn primary">Send request</button></div>
+  <div class="note">Sending opens your email app with the request filled in. You'll hear back by email, then by phone.</div>
+</form></div>
 <div class="lightbox" id="lightbox"><img id="lightImg" alt=""></div>
 <div class="toast" id="toast"></div>
 
@@ -287,15 +313,27 @@
   const st = (data && data.store) || {};
   if (st.banner) $('#hero').insertAdjacentHTML('afterbegin', `<img class="bg" src="${esc(st.banner)}" alt="">`);
   if (st.tagline && st.tagline.length > 20) $('#heroText').textContent = st.tagline;
-  const phone = st.phone || '484-223-5081';
-  const phoneDigits = phone.replace(/[^\d+]/g, '');
-  const contactBtns = cls => [`<a class="btn ${cls}" href="tel:${esc(phoneDigits)}">📞 Call</a>`, `<a class="btn ${cls}" href="sms:${esc(phoneDigits)}">💬 Text</a>`, st.email ? `<a class="btn ${cls}" href="mailto:${esc(st.email)}">✉️ Email</a>` : '', st.instagram ? `<a class="btn ${cls}" href="https://instagram.com/${esc(st.instagram.replace(/^@/, ''))}" target="_blank" rel="noopener">📸 Instagram</a>` : ''].filter(Boolean).join('');
+  const storeEmail = st.email || '';
+  const contactBtns = cls => [`<button type="button" class="btn ${cls}" data-appt="">📅 Request pickup</button>`, storeEmail ? `<a class="btn ${cls}" href="mailto:${esc(storeEmail)}">✉️ Email</a>` : '', st.instagram ? `<a class="btn ${cls}" href="https://instagram.com/${esc(st.instagram.replace(/^@/, ''))}" target="_blank" rel="noopener">📸 Instagram</a>` : ''].filter(Boolean).join('');
   $('#heroContact').innerHTML = contactBtns('ghost lg');
-  $('#heroContact').insertAdjacentHTML('afterend', `<div class="appt">Pickup by appointment · call or text <b>${esc(phone)}</b> to schedule</div>`);
-  $('#navCta').innerHTML = `<a class="btn primary sm" href="tel:${esc(phoneDigits)}">Call</a>`;
-  $('#footContact').innerHTML = [`📍 Pickup in ${esc(st.location || 'Philadelphia, PA')} by appointment`, `📞 <a href="tel:${esc(phoneDigits)}">${esc(phone)}</a>`, st.email ? `✉️ ${esc(st.email)}` : ''].filter(Boolean).join(' &nbsp;·&nbsp; ');
+  $('#heroContact').insertAdjacentHTML('afterend', `<div class="appt">Pickup by appointment · <b>request a time</b>, get a confirmation email, then we call you</div>`);
+  $('#navCta').innerHTML = `<button type="button" class="btn primary sm" data-appt="">Book pickup</button>`;
+  // appointment form -> opens the customer's email app with everything filled in
+  const apptModal = $('#apptModal'), apptForm = $('#apptForm');
+  function openAppt(itemName) { apptForm.reset(); $('#apptItem').value = itemName || ''; apptModal.classList.add('open'); setTimeout(() => (itemName ? apptForm.elements.name : $('#apptItem')).focus(), 60); }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-appt]'); if (b) openAppt(b.dataset.appt); });
+  $('#apptCancel').onclick = () => apptModal.classList.remove('open');
+  apptModal.addEventListener('mousedown', e => { if (e.target === apptModal) apptModal.classList.remove('open'); });
+  apptForm.addEventListener('submit', e => {
+    e.preventDefault(); const f = apptForm.elements;
+    const subject = `Pickup appointment request: ${f.item.value || 'inventory'}`;
+    const body = [`Item: ${f.item.value || '(not specified)'}`, `Name: ${f.name.value}`, `Phone: ${f.phone.value}`, `Email: ${f.email.value}`, `Preferred: ${f.day.value}, ${f.time.value}`, `Notes: ${f.notes.value || '-'}`, '', 'Sent from thes0ln.com'].join('\n');
+    window.location.href = `mailto:${encodeURIComponent(storeEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    apptModal.classList.remove('open'); toast('Opening your email app…');
+  });
+  $('#footContact').innerHTML = [`📍 Pickup in ${esc(st.location || 'Philadelphia, PA')} by appointment`, storeEmail ? `✉️ <a href="mailto:${esc(storeEmail)}">${esc(storeEmail)}</a>` : ''].filter(Boolean).join(' &nbsp;·&nbsp; ');
   const loc = st.location || 'Philadelphia, PA'; $('#heroLoc').textContent = loc;
-  $('#trust .wrap').innerHTML = ['Brand new, never installed', `Pickup in ${esc(loc)} by appointment`, 'Cash only', 'Volume pricing on lots'].map(t => `<span>${t}</span>`).join('');
+  $('#trust .wrap').innerHTML = ['Brand new, never installed', `Pickup in ${esc(loc)} by appointment`, 'Cash only', 'We confirm by email, then call you'].map(t => `<span>${t}</span>`).join('');
 
   const items = ((data && data.items) || []).filter(i => i && i.name).map(i => Object.assign({ photos: [] }, i, { photos: Array.isArray(i.photos) ? i.photos : (i.photo ? [i.photo] : []) }));
   const sold = ((data && data.sold) || []).filter(s => s && s.name);
@@ -334,8 +372,8 @@
   if (sold.length) { $('#soldSec').hidden = false; $('#soldStrip').innerHTML = sold.map(s => `<div class="sold"><div class="ph">${s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : art(s.category || 'default')}<span>Sold</span></div><div class="nm">${esc(s.name)}</div></div>`).join(''); }
   $('#aboutGrid').innerHTML = [
     `<div class="panel dark"><h3>About</h3>${esc(st.about || 'We buy contractor surplus and overstock, brand new and never installed, and pass the savings on. Inventory changes weekly.')}</div>`,
-    `<div class="panel"><h3>Pickup &amp; payment</h3>${esc(st.policies || `Pickup in ${st.location || 'Philadelphia, PA'} by appointment. Call or text to set a time. Buyer loads and transports. Cash only. Ask about delivery on larger orders.`)}</div>`,
-    `<div class="panel"><h3>Get in touch</h3>Call ${esc(phone)} to set up a pickup appointment, or text the item name. Volume buyers: ask about pricing on full lots.<div class="acts">${contactBtns('')}</div></div>`
+    `<div class="panel"><h3>Pickup &amp; payment</h3>${esc(st.policies || `Pickup in ${st.location || 'Philadelphia, PA'} by appointment only. Buyer loads and transports. Cash only. Ask about delivery on larger orders.`)}</div>`,
+    `<div class="panel"><h3>How to buy</h3><div class="steps"><div class="step"><b>1. Request</b>Pick an item and send a pickup request with your name, phone and preferred times.</div><div class="step"><b>2. Confirm</b>We email you a confirmation with the details.</div><div class="step"><b>3. We call</b>We call you to lock in the time and answer questions.</div></div><div class="acts">${contactBtns('')}</div></div>`
   ].join('');
 
   function renderDetail(id) {
@@ -343,8 +381,8 @@
     if (!i) { d.classList.remove('open'); $('#listView').hidden = false; return; }
     const retailN = retailOf(i);
     const subject = encodeURIComponent(`Interested in: ${i.name} (${money(i.price)})`);
-    const want = `<a class="btn primary lg" href="tel:${esc(phoneDigits)}">📞 Call to set up pickup</a>`;
-    const second = `<a class="btn" href="sms:${esc(phoneDigits)}?body=${subject}">💬 Text</a>${st.email ? `<a class="btn" href="mailto:${esc(st.email)}?subject=${subject}">✉️ Email</a>` : ''}`;
+    const want = `<button type="button" class="btn primary lg" data-appt="${esc(i.name)}">📅 Request pickup appointment</button>`;
+    const second = storeEmail ? `<a class="btn" href="mailto:${esc(storeEmail)}?subject=${subject}">✉️ Ask a question</a>` : '';
     d.innerHTML = `<div class="crumb"><a href="#">Home</a> › <a href="#shop" data-crumb="${esc(i.category)}">${esc(i.category || 'Inventory')}</a> › ${esc(i.name)}</div>
       <div class="dwrap">
         <div><div class="carousel" id="carousel">${i.photos.length ? i.photos.map(p => `<img src="${esc(p)}" alt="${esc(i.name)}" data-full="${esc(p)}">`).join('') : `<div class="noph">${art(i.category)}</div>`}</div>${i.photos.length > 1 ? `<div class="thumbs" id="thumbs">${i.photos.map((p, k) => `<img src="${esc(p)}" alt="" class="${k ? '' : 'on'}" data-k="${k}">`).join('')}</div>` : ''}</div>
@@ -357,7 +395,7 @@
           <dl class="specs">${[['Brand', i.brand], ['Model', i.model], ['Size', i.size], ['Condition', i.condition], ['Available', i.qty > 1 ? i.qty + ' units' : '1 unit']].filter(x => x[1]).map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
           ${i.desc ? `<div class="desc">${esc(i.desc)}</div>` : ''}
           <div class="acts">${want}<div class="row">${second}${i.url ? `<a class="btn" href="${esc(i.url)}" target="_blank" rel="noopener">View listing</a>` : ''}<button class="btn" id="shareBtn">Share</button></div></div>
-          <div class="fine">Pickup in ${esc(st.location || 'Philadelphia, PA')} by appointment. Cash only.${st.policies ? '\n' + esc(st.policies) : ''}</div>
+          <div class="fine">Pickup in ${esc(st.location || 'Philadelphia, PA')} by appointment only. Cash only. You'll get a confirmation email, then a call from us.</div>
         </div>
       </div>`;
     $('#listView').hidden = true; d.classList.add('open'); window.scrollTo(0, 0);
