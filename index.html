@@ -356,7 +356,7 @@
   const sold = ((data && data.sold) || []).filter(s => s && s.name);
   if (!items.length) { $('#catsSec').hidden = true; $('#newSec').hidden = true; $('#empty').hidden = false; $('#empty').textContent = 'Nothing listed right now. Check back soon, or text us for what is coming.'; }
   const units = items.reduce((a, i) => a + (i.qty || 1), 0); const cats = [...new Set(items.map(i => i.category).filter(Boolean))].sort();
-  const retailOf = i => { const m = String(i.desc || '').match(/retail \$([\d,]+)/i); return m ? parseFloat(m[1].replace(/,/g, '')) : 0; };
+  const retailOf = i => { if (Number(i.retail) > 0) return Number(i.retail); const m = String(i.desc || '').match(/retail \$([\d,]+)/i); return m ? parseFloat(m[1].replace(/,/g, '')) : 0; };
   $('#catsSub').textContent = `${items.length} listings across ${cats.length} categor${cats.length === 1 ? 'y' : 'ies'}`;
   $('#cats').innerHTML = cats.map(c => { const list = items.filter(i => i.category === c); const ph = list.map(i => i.photos[0]).find(Boolean); const from = Math.min(...list.map(i => i.price)); const n = list.reduce((a, i) => a + (i.qty || 1), 0); return `<a class="cat" href="#shop" data-cat="${esc(c)}" style="--tint:${tint(c)}">${ph ? `<img src="${esc(ph)}" alt="" loading="lazy">` : `<div class="art">${art(c)}</div>`}<div class="ov"></div><div class="t"><h3>${esc(c)}</h3><div class="m">${n} unit${n === 1 ? '' : 's'} · from <b>${money(from)}</b></div></div></a>`; }).join('');
   $('#cats').addEventListener('click', e => { const a = e.target.closest('[data-cat]'); if (a) setCat(a.dataset.cat); });
