@@ -122,6 +122,7 @@
   .card .ph { aspect-ratio: 1; background: var(--bg-2); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; padding: 28%; }
   .card .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; padding: 0; }
   .card .ph.generic img { opacity: .8; }
+  .card .ph.generic::after { content: "Stock photo"; position: absolute; left: 8px; bottom: 8px; background: rgba(29,24,19,.85); color: var(--text-2); font: 500 11px var(--body); padding: 3px 6px; border-radius: 3px; border: 1px solid var(--line-2); }
   .card .ph svg { width: 100%; height: 100%; image-rendering: pixelated; opacity: .75; }
   .card .ph .n { position: absolute; right: 8px; bottom: 8px; background: rgba(10,14,26,.85); color: var(--text-2); font-family: var(--pixel); font-size: 13.5px; padding: 4px 7px; border-radius: 3px; border: 1px solid var(--line-2); }
   .card .ph .new { position: absolute; left: 8px; top: 8px; background: var(--accent); color: var(--accent-ink); font-family: var(--pixel); font-size: 13.5px; padding: 4px 7px; border-radius: 3px; }
@@ -351,7 +352,7 @@
       '................', '......cccccc....', '.....cCCCCCCc...', '....cCCkkCCCc...', '...cCCCkkCCCc...', '..cCCCCCCCCCc...', '.cCCCCCCCCCc....', '.cCCCCCCCCc.....',
       '.cCCCCCCCc......', '.cCCCCCCc.......', '.cCCCCCc........', '.cCCCCc.........', '.cCCCc..........', '.cccc...........', '................', '................'] }
   };
-  const CAT_PHOTO = {};
+  const CAT_PHOTO = { Windows: 'img/cat-windows.jpg', Doors: 'img/cat-doors.jpg', Flooring: 'img/cat-flooring.jpg', 'Kitchen & bath': 'img/cat-kitchen-bath.jpg', Plumbing: 'img/cat-plumbing.jpg', Tools: 'img/cat-tools.jpg', 'Outdoor power': 'img/cat-outdoor.jpg' };
   const catPhoto = c => CAT_PHOTO[c] || '';
   function art(cat) {
     const a = ART[cat] || ART.default; let r = '';
@@ -454,7 +455,7 @@
   }
   document.addEventListener('click', e => { const c = e.target.closest('.card[data-id]'); if (c) location.hash = 'item=' + encodeURIComponent(c.dataset.id); });
 
-  if (sold.length) { $('#soldSec').hidden = false; $('#soldStrip').innerHTML = sold.map(s => `<div class="sold"><div class="ph">${s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : art(s.category || 'default')}<span>Sold</span></div><div class="nm">${esc(s.name)}</div></div>`).join(''); }
+  if (sold.length) { $('#soldSec').hidden = false; $('#soldStrip').innerHTML = sold.map(s => `<div class="sold"><div class="ph">${s.photo ? `<img src="${esc(s.photo)}" alt="" loading="lazy">` : catPhoto(s.category) ? `<img src="${esc(catPhoto(s.category))}" alt="" loading="lazy" style="opacity:.7">` : art(s.category || 'default')}<span>Sold</span></div><div class="nm">${esc(s.name)}</div></div>`).join(''); }
   $('#aboutGrid').innerHTML = [
     `<div class="panel dark"><h3>About</h3>${esc(st.about || 'We buy contractor surplus and overstock, brand new and never installed, and pass the savings on. Inventory changes weekly.')}</div>`,
     `<div class="panel"><h3>Pickup &amp; payment</h3>${esc(st.policies || `Pickup in ${st.location || 'Philadelphia, PA'} by appointment only. Buyer loads and transports. Cash only. Ask about delivery on larger orders.`)}</div>`,
