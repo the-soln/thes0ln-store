@@ -13,7 +13,7 @@
   "instagram": "",
   "banner": ""
  },
- "updated": "2026-10-17T02:40:07.293Z",
+ "updated": "2026-10-17T17:33:53.990Z",
  "items": [
   {
    "id": "okvqau8e1a13d86fb17",
@@ -91,22 +91,6 @@
    "size": "33-5/8 x 40-7/8 in",
    "desc": "Brand new Andersen 400 Series double-hung window, never installed.\nSize: 33-5/8\" x 40-7/8\" (W x H, unit dimension). Model # TW2832.\nWhite exterior, wood core with low-maintenance vinyl-clad exterior, Low-E glass, natural pine interior (ready to paint or stain), Stone hardware.",
    "qty": 3,
-   "url": "",
-   "added": "2026-09-21",
-   "photos": []
-  },
-  {
-   "id": "dk6h5g0v1a13d86fb18",
-   "name": "Andersen 400 Series White Double-Hung Window 37-5/8\" x 56-7/8\"",
-   "price": 359,
-   "category": "Windows",
-   "condition": "New",
-   "brand": "Andersen",
-   "model": "TW3046 · HD #100054916",
-   "retail": 599,
-   "size": "37-5/8 x 56-7/8 in",
-   "desc": "Brand new Andersen 400 Series double-hung window, never installed.\nSize: 37-5/8\" x 56-7/8\" (W x H, unit dimension). Model # TW3046.\nWhite exterior, wood core with low-maintenance vinyl-clad exterior, Low-E glass, natural pine interior (ready to paint or stain), Stone hardware.",
-   "qty": 1,
    "url": "",
    "added": "2026-09-21",
    "photos": []
@@ -611,6 +595,12 @@
   }
  ],
  "sold": [
+  {
+   "id": "dk6h5g0v1a13d86fb18",
+   "name": "Andersen 400 Series White Double-Hung Window 37-5/8\" x 56-7/8\"",
+   "date": "2026-10-17",
+   "photo": ""
+  },
   {
    "id": "o5lytwd31a142986b45",
    "name": "Foxglade 31 in. Single Sink Light Gray Bath Vanity with White Cultured Marble Top (Assembled)",
