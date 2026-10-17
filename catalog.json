@@ -13,7 +13,7 @@
   "instagram": "",
   "banner": ""
  },
- "updated": "2026-10-17T00:12:35.242Z",
+ "updated": "2026-10-17T00:16:56.186Z",
  "items": [
   {
    "id": "okvqau8e1a13d86fb17",
@@ -450,14 +450,14 @@
   {
    "id": "t2yuk85d1a14299e06b",
    "name": "Andersen 400 Series 71-1/4 in. x 79-1/2 in. White Right-Hand Frenchwood Gliding Patio Door, Pine Interior, Moving Panel with Blinds",
-   "price": 650,
+   "price": 1450,
    "category": "Doors",
    "condition": "New",
    "brand": "Andersen",
    "model": "HD SKU 1002976575",
-   "retail": 949,
+   "retail": 2400,
    "size": "",
-   "desc": "Andersen 400 Series 71-1/4 in. x 79-1/2 in. white right-hand Frenchwood gliding patio door, pine interior, blinds between the glass in the moving panel. Brand new. Home Depot retail $949.",
+   "desc": "Andersen 400 Series 71-1/4 in. x 79-1/2 in. white right-hand Frenchwood gliding patio door, pine interior, blinds between the glass in the moving panel. Brand new. Home Depot retail $2,400.",
    "qty": 4,
    "url": "",
    "added": "2026-09-22",
@@ -616,6 +616,38 @@
    "qty": 30,
    "url": "",
    "added": "2026-06-03",
+   "photos": []
+  },
+  {
+   "id": "ilndz8a81a147332d45",
+   "name": "Style Selections Chestnut Oak 20 mil x 7 in. x 48 in. Waterproof Click Lock Luxury Vinyl Plank Flooring (18.62 sq ft per carton)",
+   "price": 32,
+   "category": "Flooring",
+   "condition": "New",
+   "brand": "Style Selections",
+   "model": "",
+   "retail": 46,
+   "size": "7 x 48 in",
+   "desc": "Style Selections Chestnut Oak 20 mil waterproof click-lock luxury vinyl plank, 7 in. x 48 in., 18.62 sq ft per carton. Brand new, sold by the carton.",
+   "qty": 48,
+   "url": "",
+   "added": "2026-06-23",
+   "photos": []
+  },
+  {
+   "id": "57fqd3t71a147332d45",
+   "name": "Style Selections Natural Hickory 20 mil x 7 in. x 48 in. Waterproof Click Lock Luxury Vinyl Plank Flooring (18.62 sq ft per carton)",
+   "price": 32,
+   "category": "Flooring",
+   "condition": "New",
+   "brand": "Style Selections",
+   "model": "",
+   "retail": 46,
+   "size": "7 x 48 in",
+   "desc": "Style Selections Natural Hickory 20 mil waterproof click-lock luxury vinyl plank, 7 in. x 48 in., 18.62 sq ft per carton. Brand new, sold by the carton.",
+   "qty": 39,
+   "url": "",
+   "added": "2026-06-23",
    "photos": []
   }
  ],
