@@ -52,6 +52,10 @@
   /* hero */
   .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
   .hero::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.10) 0 2px, transparent 2px 4px); pointer-events: none; }
+  .hero .bgph { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: .55; pointer-events: none; }
+  .hero .bgph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, rgba(29,24,19,.92) 30%, rgba(29,24,19,.55) 65%, rgba(29,24,19,.35) 100%), linear-gradient(180deg, rgba(29,24,19,.2) 0%, rgba(29,24,19,0) 40%, var(--bg) 100%); }
+  .hero.has-ph::before { display: none; }
+  .hero.has-ph::after { opacity: .14; }
   .hero::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: -1px; height: 46%; background: linear-gradient(transparent, rgba(243,198,83,.08)); background-image: linear-gradient(rgba(243,198,83,.22) 1px, transparent 1px), linear-gradient(90deg, rgba(243,198,83,.22) 1px, transparent 1px); background-size: 60px 30px; transform: perspective(380px) rotateX(60deg); transform-origin: bottom; opacity: .3; pointer-events: none; }
   .hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .18; filter: saturate(.3) contrast(1.2); }
   .hero .wrap { position: relative; padding: 54px 20px 56px; max-width: 920px; z-index: 1; }
@@ -70,14 +74,14 @@
   .trust .wrap { display: flex; gap: 26px; flex-wrap: wrap; justify-content: center; padding: 13px 20px; }
   .trust span::before { content: "■"; color: var(--accent); margin-right: 8px; }
 
-  section { padding: 40px 0 6px; }
-  .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  section { padding: 56px 0 10px; }
+  .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
   .sec-head h2 { font-size: 26px; color: #fff; }
   .sec-head h2::before { content: ""; display: inline-block; width: 10px; height: 10px; background: var(--accent); margin-right: 10px; vertical-align: 2px; }
   .sec-head h2 small { display: block; font: 500 14px var(--body); text-transform: none; letter-spacing: 0; color: var(--text-2); margin-top: 6px; }
 
   /* categories */
-  .cats { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+  .cats { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
   .cat { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; background: var(--panel); border: 2px solid var(--line); color: #fff; cursor: pointer; text-decoration: none; display: block; transition: transform .1s, border-color .15s, box-shadow .15s; }
   .cat:hover { transform: translateY(-3px); border-color: var(--tint, var(--accent)); box-shadow: 0 10px 24px rgba(0,0,0,.35); }
   .cat img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .9; }
@@ -117,10 +121,11 @@
   .card:hover { transform: translateY(-3px); border-color: var(--line-2); box-shadow: 0 10px 24px rgba(0,0,0,.35); }
   .card .ph { aspect-ratio: 1; background: var(--bg-2); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; padding: 28%; }
   .card .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; padding: 0; }
+  .card .ph.generic img { opacity: .8; }
   .card .ph svg { width: 100%; height: 100%; image-rendering: pixelated; opacity: .75; }
   .card .ph .n { position: absolute; right: 8px; bottom: 8px; background: rgba(10,14,26,.85); color: var(--text-2); font-family: var(--pixel); font-size: 13.5px; padding: 4px 7px; border-radius: 3px; border: 1px solid var(--line-2); }
   .card .ph .new { position: absolute; left: 8px; top: 8px; background: var(--accent); color: var(--accent-ink); font-family: var(--pixel); font-size: 13.5px; padding: 4px 7px; border-radius: 3px; }
-  .card .body { padding: 11px 13px 13px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .card .body { padding: 16px 14px 15px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
   .card .cat-l { font: 600 12px var(--body); color: var(--text-3); letter-spacing: .06em; text-transform: uppercase; }
   .card .name { font-weight: 600; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 15px; color: #fff; }
   .card .meta { font-size: 13px; color: var(--text-2); }
@@ -346,6 +351,8 @@
       '................', '......cccccc....', '.....cCCCCCCc...', '....cCCkkCCCc...', '...cCCCkkCCCc...', '..cCCCCCCCCCc...', '.cCCCCCCCCCc....', '.cCCCCCCCCc.....',
       '.cCCCCCCCc......', '.cCCCCCCc.......', '.cCCCCCc........', '.cCCCCc.........', '.cCCCc..........', '.cccc...........', '................', '................'] }
   };
+  const CAT_PHOTO = {};
+  const catPhoto = c => CAT_PHOTO[c] || '';
   function art(cat) {
     const a = ART[cat] || ART.default; let r = '';
     a.rows.forEach((row, y) => { for (let x = 0; x < 16; x++) { const ch = row[x]; if (ch && ch !== '.') r += `<rect x="${x}" y="${y}" width="1" height="1" fill="${PAL[ch] || '#fff'}"/>`; } });
@@ -362,6 +369,7 @@
   const storeEmail = st.email || '';
   const contactBtns = cls => [`<button type="button" class="btn ${cls}" data-appt="">Request pickup</button>`, storeEmail ? `<a class="btn ${cls}" href="mailto:${esc(storeEmail)}">Email</a>` : '', st.instagram ? `<a class="btn ${cls}" href="https://instagram.com/${esc(st.instagram.replace(/^@/, ''))}" target="_blank" rel="noopener">Instagram</a>` : ''].filter(Boolean).join('');
   $('#heroContact').innerHTML = contactBtns('ghost lg');
+  { const src = st.banner || 'img/hero.jpg'; const im = new Image(); im.onload = () => { const d = document.createElement('div'); d.className = 'bgph'; d.style.backgroundImage = `url(${JSON.stringify(src)})`; const h = $('.hero'); h.prepend(d); h.classList.add('has-ph'); }; im.src = src; }
   $('#heroContact').insertAdjacentHTML('afterend', `<div class="appt">Pickup by appointment · <b>request a time</b>, get a confirmation email, then we call you</div>`);
   $('#navCta').innerHTML = `<button type="button" class="btn primary sm" data-appt="">Book pickup</button>`;
   // appointment form -> opens the customer's email app with everything filled in
@@ -388,12 +396,12 @@
   const units = items.reduce((a, i) => a + (i.qty || 1), 0); const cats = [...new Set(items.map(i => i.category).filter(Boolean))].sort();
   const retailOf = i => { if (Number(i.retail) > 0) return Number(i.retail); const m = String(i.desc || '').match(/retail \$([\d,]+)/i); return m ? parseFloat(m[1].replace(/,/g, '')) : 0; };
   $('#catsSub').textContent = `${items.length} listings across ${cats.length} categor${cats.length === 1 ? 'y' : 'ies'}`;
-  $('#cats').innerHTML = cats.map(c => { const list = items.filter(i => i.category === c); const ph = list.map(i => i.photos[0]).find(Boolean); const from = Math.min(...list.map(i => i.price)); const n = list.reduce((a, i) => a + (i.qty || 1), 0); return `<a class="cat" href="#shop" data-cat="${esc(c)}" style="--tint:${tint(c)}">${ph ? `<img src="${esc(ph)}" alt="" loading="lazy">` : `<div class="art">${art(c)}</div>`}<div class="ov"></div><div class="t"><h3>${esc(c)}</h3><div class="m">${n} unit${n === 1 ? '' : 's'} · from <b>${money(from)}</b></div></div></a>`; }).join('');
+  $('#cats').innerHTML = cats.map(c => { const list = items.filter(i => i.category === c); const ph = list.map(i => i.photos[0]).find(Boolean); const from = Math.min(...list.map(i => i.price)); const n = list.reduce((a, i) => a + (i.qty || 1), 0); const gp = catPhoto(c); return `<a class="cat" href="#shop" data-cat="${esc(c)}" style="--tint:${tint(c)}">${gp ? `<img src="${esc(gp)}" alt="" loading="lazy">` : ph ? `<img src="${esc(ph)}" alt="" loading="lazy">` : `<div class="art">${art(c)}</div>`}<div class="ov"></div><div class="t"><h3>${esc(c)}</h3><div class="m">${n} unit${n === 1 ? '' : 's'} · from <b>${money(from)}</b></div></div></a>`; }).join('');
   $('#cats').addEventListener('click', e => { const a = e.target.closest('[data-cat]'); if (a) setCat(a.dataset.cat); });
 
   const cardHtml = (i, isNew) => `
       <div class="card" data-id="${esc(i.id)}">
-        <div class="ph">${i.photos[0] ? `<img src="${esc(i.photos[0])}" alt="${esc(i.name)}" loading="lazy">` : art(i.category)}${isNew ? '<span class="new">NEW</span>' : ''}${i.photos.length > 1 ? `<span class="n">${i.photos.length} photos</span>` : ''}</div>
+        <div class="ph${!i.photos[0] && catPhoto(i.category) ? ' generic' : ''}">${i.photos[0] ? `<img src="${esc(i.photos[0])}" alt="${esc(i.name)}" loading="lazy">` : catPhoto(i.category) ? `<img src="${esc(catPhoto(i.category))}" alt="" loading="lazy">` : art(i.category)}${isNew ? '<span class="new">NEW</span>' : ''}${i.photos.length > 1 ? `<span class="n">${i.photos.length} photos</span>` : ''}</div>
         <div class="body"><div class="cat-l">${esc(i.category || '')}${i.brand ? ' · ' + esc(i.brand) : ''}</div><div class="name">${esc(i.name)}</div><div class="meta">${[i.model ? 'Model ' + i.model : '', i.size ? 'Size ' + i.size : '', i.qty > 1 ? `${i.qty} available` : ''].filter(Boolean).map(esc).join(' · ')}</div><div class="price-row"><span class="price">${money(i.price)}</span>${i.condition ? `<span class="cond">${esc(i.condition)}</span>` : ''}</div></div>
       </div>`;
   const newest = items.slice().sort((a, b) => (b.added || '').localeCompare(a.added || '')).slice(0, 8);
