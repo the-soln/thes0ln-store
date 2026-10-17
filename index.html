@@ -93,7 +93,8 @@
   .shop-layout { display: grid; grid-template-columns: 260px 1fr; gap: 22px; align-items: start; }
   .shop-layout > * { min-width: 0; }
   .side-block { min-width: 0; }
-  .side { position: sticky; top: 76px; display: flex; flex-direction: column; gap: 12px; }
+  .side { position: sticky; top: 76px; display: flex; flex-direction: column; gap: 12px; max-height: calc(100vh - 90px); overflow-y: auto; overscroll-behavior: contain; padding-right: 4px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+  .side::-webkit-scrollbar { width: 6px; } .side::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 3px; }
   .side-block { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; display: flex; flex-direction: column; gap: 8px; }
   .side-block:has(.facets:empty) { display: none; }
   .side-h { font: 700 13px var(--body); color: var(--text-3); text-transform: uppercase; letter-spacing: .08em; }
@@ -214,7 +215,7 @@
     .sec-head h2 { font-size: 20px; }
     .cats { grid-template-columns: repeat(2, 1fr); gap: 8px; } .cat .t h3 { font-size: 14px; }
     .shop-layout { grid-template-columns: 1fr; gap: 12px; }
-    .side { position: static; }
+    .side { position: static; max-height: none; overflow: visible; padding-right: 0; }
     .chips { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
     .chips::-webkit-scrollbar { display: none; }
     .chip { flex: none; border-color: var(--line-2); background: var(--bg-2); }
