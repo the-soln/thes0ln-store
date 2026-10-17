@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="The Soln">
 <link rel="canonical" href="https://thes0ln.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%230f1629'/%3E%3Cpath fill='%232ee6ff' d='M3 2h10v12H3z'/%3E%3Cpath fill='%23f1f6ff' d='M4 3h3v4H4zm5 0h3v4H9zM4 8h3v5H4zm5 0h3v5H9z'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"The Soln","alternateName":"Ron's Retail LLC","url":"https://thes0ln.com/","email":"ronsretailllc@gmail.com","description":"Brand-new contractor-grade surplus: windows, doors, flooring and tools at about 40% off retail. Pickup in Philadelphia, PA by appointment. Cash only.","areaServed":"Philadelphia, PA","address":{"@type":"PostalAddress","addressLocality":"Philadelphia","addressRegion":"PA","addressCountry":"US"},"paymentAccepted":"Cash","priceRange":"$"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"The Soln","url":"https://thes0ln.com/","email":"ronsretailllc@gmail.com","description":"Brand-new contractor-grade surplus: windows, doors, flooring and tools at about 40% off retail. Pickup in Philadelphia, PA by appointment. Cash only.","areaServed":"Philadelphia, PA","address":{"@type":"PostalAddress","addressLocality":"Philadelphia","addressRegion":"PA","addressCountry":"US"},"paymentAccepted":"Cash","priceRange":"$"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Share+Tech+Mono&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -123,6 +123,7 @@
   .card .ph { aspect-ratio: 1; background: var(--bg-2); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; padding: 28%; }
   .card .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; padding: 0; }
   .card .ph.generic img { opacity: .8; }
+  .carousel .stock { position: absolute; left: 10px; bottom: 10px; background: rgba(29,24,19,.85); color: var(--text-2); font: 500 12px var(--body); padding: 4px 8px; border-radius: 3px; border: 1px solid var(--line-2); }
   .card .ph.generic::after { content: "Stock photo"; position: absolute; left: 8px; bottom: 8px; background: rgba(29,24,19,.85); color: var(--text-2); font: 500 11px var(--body); padding: 3px 6px; border-radius: 3px; border: 1px solid var(--line-2); }
   .card .ph svg { width: 100%; height: 100%; image-rendering: pixelated; opacity: .75; }
   .card .ph .n { position: absolute; right: 8px; bottom: 8px; background: rgba(10,14,26,.85); color: var(--text-2); font-family: var(--pixel); font-size: 13.5px; padding: 4px 7px; border-radius: 3px; border: 1px solid var(--line-2); }
@@ -133,7 +134,7 @@
   .card .meta { font-size: 13px; color: var(--text-2); }
   .card .price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; margin-top: auto; padding-top: 8px; }
   .card .price { font-family: var(--head); font-weight: 700; font-size: 20px; color: var(--accent); line-height: 1; letter-spacing: .02em; }
-  .cond { display: inline-block; font-family: var(--pixel); font-size: 13.5px; padding: 4px 7px; border-radius: 3px; background: rgba(163,230,53,.12); color: var(--lime); border: 1px solid rgba(163,230,53,.35); }
+  .cond { display: inline-block; font: 600 13px var(--body); padding: 4px 7px; border-radius: 3px; background: rgba(163,230,53,.12); color: var(--lime); border: 1px solid rgba(163,230,53,.35); }
   .empty { text-align: center; color: var(--text-3); padding: 50px 10px; }
 
   /* about */
@@ -165,11 +166,11 @@
   /* detail */
   .detail { display: none; padding: 20px 0 40px; }
   .detail.open { display: block; }
-  .crumb { font-family: var(--pixel); font-size: 13.5px; color: var(--text-3); margin-bottom: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: .04em; }
-  .crumb a { color: var(--accent); text-decoration: none; }
+  .crumb { font: 500 16px var(--body); color: var(--text-2); margin-bottom: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .crumb a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
   .dwrap { display: grid; grid-template-columns: 1fr; gap: 20px; }
   @media (min-width: 820px) { .dwrap { grid-template-columns: 1.15fr .85fr; align-items: start; } .buybox { position: sticky; top: 82px; } }
-  .carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; border-radius: var(--radius); scrollbar-width: none; background: var(--panel); border: 2px solid var(--line); }
+  .carousel { position: relative; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; border-radius: var(--radius); scrollbar-width: none; background: var(--panel); border: 2px solid var(--line); }
   .carousel::-webkit-scrollbar { display: none; }
   .carousel img { flex: none; width: 100%; aspect-ratio: 1; object-fit: cover; scroll-snap-align: start; cursor: zoom-in; }
   .carousel .noph { flex: none; width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; padding: 22%; }
@@ -178,18 +179,18 @@
   .thumbs img { width: 64px; height: 64px; object-fit: cover; border-radius: 4px; border: 2px solid var(--line); cursor: pointer; }
   .thumbs img.on { border-color: var(--accent); }
   .buybox { background: var(--panel); border: 2px solid var(--line-2); border-radius: var(--radius); padding: 20px; }
-  .buybox .cat-l { font-family: var(--pixel); font-size: 13.5px; color: var(--text-3); letter-spacing: .05em; text-transform: uppercase; }
-  .buybox h1 { font-size: 22px; font-weight: 600; margin: 8px 0 10px; text-transform: none; letter-spacing: 0; font-family: var(--body); line-height: 1.3; color: #fff; }
+  .buybox .cat-l { font: 700 13px var(--body); color: var(--text-2); letter-spacing: .06em; text-transform: uppercase; }
+  .buybox h1 { font-size: 24px; font-weight: 600; margin: 8px 0 10px; text-transform: none; letter-spacing: 0; font-family: var(--body); line-height: 1.3; color: #fff; }
   .buybox .price { font-family: var(--head); font-weight: 700; font-size: 36px; color: var(--accent); line-height: 1; margin: 8px 0 6px; letter-spacing: .02em; }
-  .buybox .was { font-size: 13px; color: var(--text-3); margin-bottom: 12px; min-height: 18px; }
+  .buybox .was { font-size: 15px; color: var(--text-2); margin-bottom: 12px; min-height: 18px; }
   .buybox .was b { color: var(--lime); }
-  .specs { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: 15px; margin: 14px 0; padding: 14px 0; border-top: 1px dashed var(--line-2); border-bottom: 1px dashed var(--line-2); }
-  .specs dt { color: var(--text-2); font-family: var(--pixel); font-size: 13.5px; padding-top: 2px; letter-spacing: .04em; } .specs dd { margin: 0; font-weight: 500; }
-  .buybox .desc { white-space: pre-line; color: var(--text); margin-bottom: 16px; font-size: 15px; }
+  .specs { display: grid; grid-template-columns: auto 1fr; gap: 10px 16px; font-size: 16px; margin: 14px 0; padding: 14px 0; border-top: 1px dashed var(--line-2); border-bottom: 1px dashed var(--line-2); }
+  .specs dt { color: var(--text-2); font: 600 14px var(--body); padding-top: 2px; } .specs dd { margin: 0; font-weight: 500; }
+  .buybox .desc { white-space: pre-line; color: var(--text); margin-bottom: 16px; font-size: 16px; line-height: 1.6; }
   .buybox .acts { display: grid; gap: 8px; }
   .buybox .acts .row { display: flex; gap: 8px; }
   .buybox .acts .row .btn { flex: 1; }
-  .fine { font-size: 14px; color: var(--text-2); margin-top: 12px; white-space: pre-line; }
+  .fine { font-size: 15px; color: var(--text-2); margin-top: 12px; white-space: pre-line; }
   .lightbox { position: fixed; inset: 0; background: rgba(5,8,16,.95); display: none; align-items: center; justify-content: center; z-index: 50; cursor: zoom-out; }
   .lightbox.open { display: flex; } .lightbox img { max-width: 96vw; max-height: 92vh; border: 1px solid var(--line-2); }
   .modal { position: fixed; inset: 0; background: rgba(5,8,16,.8); display: none; align-items: center; justify-content: center; z-index: 55; padding: 16px; }
@@ -240,7 +241,7 @@
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <a class="brand" href="#" id="brandLink"><span class="name">The <b>Soln</b></span><span class="by">by Ron's Retail LLC</span></a>
+  <a class="brand" href="#" id="brandLink"><span class="name">The <b>Soln</b></span></a>
   <nav class="nav"><a href="#shop">Shop</a><a href="#about">About</a><a href="#contact">Contact</a><span id="navCta"></span></nav>
 </div></header>
 
@@ -281,7 +282,7 @@
 <div class="detail wrap" id="detail"></div>
 
 <footer id="contact"><div class="wrap">
-  <div class="brand"><span class="name">The <b>Soln</b></span><span class="by">by Ron's Retail LLC</span></div>
+  <div class="brand"><span class="name">The <b>Soln</b></span></div>
   <div id="footContact"></div>
   <div class="legal"><a href="#" data-legal="terms">Terms of sale</a> · <a href="#" data-legal="privacy">Privacy</a> · <span id="foot"></span></div>
 </div></footer>
@@ -474,7 +475,7 @@
     const second = storeEmail ? `<a class="btn" href="mailto:${esc(storeEmail)}?subject=${subject}">Ask a question</a>` : '';
     d.innerHTML = `<div class="crumb"><a href="#">Home</a> › <a href="#shop" data-crumb="${esc(i.category)}">${esc(i.category || 'Inventory')}</a> › ${esc(i.name)}</div>
       <div class="dwrap">
-        <div><div class="carousel" id="carousel">${i.photos.length ? i.photos.map(p => `<img src="${esc(p)}" alt="${esc(i.name)}" data-full="${esc(p)}">`).join('') : `<div class="noph">${art(i.category)}</div>`}</div>${i.photos.length > 1 ? `<div class="thumbs" id="thumbs">${i.photos.map((p, k) => `<img src="${esc(p)}" alt="" class="${k ? '' : 'on'}" data-k="${k}">`).join('')}</div>` : ''}</div>
+        <div><div class="carousel" id="carousel">${i.photos.length ? i.photos.map(p => `<img src="${esc(p)}" alt="${esc(i.name)}" data-full="${esc(p)}">`).join('') : catPhoto(i.category) ? `<img src="${esc(catPhoto(i.category))}" alt="" style="opacity:.85"><span class="stock">Stock photo</span>` : `<div class="noph">${art(i.category)}</div>`}</div>${i.photos.length > 1 ? `<div class="thumbs" id="thumbs">${i.photos.map((p, k) => `<img src="${esc(p)}" alt="" class="${k ? '' : 'on'}" data-k="${k}">`).join('')}</div>` : ''}</div>
         <div class="buybox">
           <div class="cat-l">${esc(i.category || '')}${i.brand ? ' · ' + esc(i.brand) : ''}</div>
           <h1>${esc(i.name)}</h1>
@@ -515,7 +516,7 @@
   $('#legalClose').onclick = () => $('#legalModal').classList.remove('open');
   $('#legalModal').addEventListener('mousedown', e => { if (e.target === $('#legalModal')) $('#legalModal').classList.remove('open'); });
   renderList(); route();
-  $('#foot').textContent = `${data && data.updated ? 'Inventory updated ' + new Date(data.updated).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' : ''}© ${new Date().getFullYear()} Ron's Retail LLC`;
+  $('#foot').textContent = `${data && data.updated ? 'Inventory updated ' + new Date(data.updated).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' : ''}© ${new Date().getFullYear()} The Soln`;
 })();
 </script>
 </body>
