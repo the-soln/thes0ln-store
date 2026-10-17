@@ -99,6 +99,13 @@
   .chips::-webkit-scrollbar { display: none; }
   .chip { flex: none; border: 1px solid var(--line-2); background: var(--panel); border-radius: 4px; padding: 7px 12px; font-family: var(--pixel); font-size: 12px; cursor: pointer; color: var(--text-2); letter-spacing: .04em; }
   .chip.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent-2); box-shadow: var(--glow); }
+  .facets { display: flex; flex-direction: column; gap: 6px; width: 100%; padding-top: 6px; border-top: 1px dashed var(--line); }
+  .facets:empty { display: none; }
+  .facet { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .facet::-webkit-scrollbar { display: none; }
+  .facet .fl { flex: none; font-family: var(--pixel); font-size: 12px; color: var(--text-2); min-width: 72px; letter-spacing: .04em; }
+  .facet .chip { padding: 5px 10px; font-size: 12px; }
+  .facet .chip.on { background: var(--panel-2); color: var(--accent); border-color: var(--accent); box-shadow: none; }
   .count { font-family: var(--pixel); font-size: 12px; color: var(--text-3); margin: 0 0 12px; letter-spacing: .04em; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
   .card { background: var(--panel); border: 2px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: transform .1s, border-color .15s, box-shadow .15s; }
@@ -230,7 +237,7 @@
 
   <section id="shop" class="wrap">
     <div class="sec-head"><h2>All inventory<small>Tap any item for photos, details and how to buy</small></h2></div>
-    <div class="toolbar"><input type="search" id="q" placeholder="Search size, brand, model…"><select id="sort"><option value="new">Newest</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option></select><div class="chips" id="chips"></div></div>
+    <div class="toolbar"><input type="search" id="q" placeholder="Search size, brand, model…"><select id="sort"><option value="new">Newest</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option></select><div class="chips" id="chips"></div><div class="facets" id="facets"></div></div>
     <div class="count" id="count"></div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" hidden></div>
@@ -370,14 +377,43 @@
   $('#newGrid').innerHTML = newest.map(i => cardHtml(i, true)).join('');
   if (items.length <= 8) $('#newSec').hidden = true;
 
+  // ---- facets: worked out from the items in the chosen category ----
+  const frac = t => { const m = String(t).trim().match(/^(\d+)(?:-(\d+)\/(\d+))?/); return m ? +m[1] + (m[2] ? +m[2] / +m[3] : 0) : NaN; };
+  const dims = i => { const m = String(i.size || '').match(/^\s*([\d\-\/]+)\s*x\s*([\d\-\/]+)/i); return m ? [frac(m[1]), frac(m[2])] : [NaN, NaN]; };
+  const bucket = (v, cuts, unit) => isNaN(v) ? '' : v < cuts[0] ? `Under ${cuts[0]} ${unit}` : v <= cuts[1] ? `${cuts[0]}–${cuts[1]} ${unit}` : `Over ${cuts[1]} ${unit}`;
+  const typeOf = i => { const n = i.name; for (const t of ['Double Casement', 'Casement', 'Awning', 'Double-Hung', 'Single-Hung', 'Gliding', 'Storm Door', 'Patio Door', 'Insert']) if (new RegExp(t.replace('-', '[- ]'), 'i').test(n)) return t === 'Insert' ? 'Insert replacement' : t; return ''; };
+  const seriesOf = i => { const m = i.name.match(/(\d{3})[- ]Series/i); return m ? m[1] + ' Series' : ''; };
+  const handOf = i => /left[- ]hand/i.test(i.name) ? 'Left-hand' : /right[- ]hand/i.test(i.name) ? 'Right-hand' : '';
+  const milOf = i => { const m = i.name.match(/(\d+)\s*mil\b/i); return m ? m[1] + ' mil' : ''; };
+  const colorOf = i => { const m = i.name.replace(/^(Style Selections|Lifeproof|TrafficMaster)\s+/i, '').match(/^(.+?)\s+\d+\s*mil/i); return m ? m[1] : ''; };
+  const FACETS = {
+    Windows: [['Type', typeOf], ['Series', seriesOf], ['Width', i => bucket(dims(i)[0], [30, 36], 'in')], ['Height', i => bucket(dims(i)[1], [40, 50], 'in')]],
+    Doors: [['Type', typeOf], ['Series', seriesOf], ['Hand', handOf], ['Width', i => bucket(dims(i)[0], [36, 60], 'in')]],
+    Flooring: [['Thickness', milOf], ['Color', colorOf], ['Brand', i => i.brand || '']],
+    default: [['Brand', i => i.brand || ''], ['Type', typeOf]]
+  };
+  let facet = {};
+  function renderFacets() {
+    const box = $('#facets'); if (!cat) { box.innerHTML = ''; return; }
+    const pool = items.filter(i => i.category === cat); const defs = FACETS[cat] || FACETS.default; let html = '';
+    for (const [label, fn] of defs) {
+      const counts = {}; pool.forEach(i => { const v = fn(i); if (v) counts[v] = (counts[v] || 0) + (i.qty || 1); });
+      const vals = Object.keys(counts); if (vals.length < 2) continue;
+      vals.sort((a, b) => { const na = parseFloat(a.replace(/^(Under|Over)\s+/, '')), nb = parseFloat(b.replace(/^(Under|Over)\s+/, '')); const ua = /^Under/.test(a), ub = /^Under/.test(b), oa = /^Over/.test(a), ob = /^Over/.test(b); if (ua !== ub) return ua ? -1 : 1; if (oa !== ob) return oa ? 1 : -1; return (isNaN(na) || isNaN(nb)) ? a.localeCompare(b) : na - nb; });
+      html += `<div class="facet"><span class="fl">${esc(label)}</span><span class="chip ${facet[label] ? '' : 'on'}" data-facet="${esc(label)}" data-val="">All</span>${vals.map(v => `<span class="chip ${facet[label] === v ? 'on' : ''}" data-facet="${esc(label)}" data-val="${esc(v)}">${esc(v)} <small style="opacity:.6">${counts[v]}</small></span>`).join('')}</div>`;
+    }
+    box.innerHTML = html;
+  }
+  $('#facets').addEventListener('click', e => { const c = e.target.closest('[data-facet]'); if (!c) return; if (c.dataset.val) facet[c.dataset.facet] = c.dataset.val; else delete facet[c.dataset.facet]; renderFacets(); renderList(); });
+  const passesFacets = i => { if (!cat) return true; const defs = FACETS[cat] || FACETS.default; return defs.every(([label, fn]) => !facet[label] || fn(i) === facet[label]); };
   let cat = '', q = '', sortBy = 'new';
   $('#chips').innerHTML = `<span class="chip on" data-chip="">All</span>` + cats.map(c => `<span class="chip" data-chip="${esc(c)}">${esc(c)}</span>`).join('');
-  function setCat(c) { cat = c; document.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x.dataset.chip === c)); renderList(); }
+  function setCat(c) { cat = c; facet = {}; document.querySelectorAll('#chips .chip').forEach(x => x.classList.toggle('on', x.dataset.chip === c)); renderFacets(); renderList(); }
   $('#chips').addEventListener('click', e => { const ch = e.target.closest('.chip'); if (ch) setCat(ch.dataset.chip); });
   $('#q').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); renderList(); });
   $('#sort').addEventListener('change', e => { sortBy = e.target.value; renderList(); });
   function renderList() {
-    let list = items.filter(i => (!cat || i.category === cat) && (!q || `${i.name} ${i.brand} ${i.model || ''} ${i.size} ${i.category} ${i.condition} ${i.desc}`.toLowerCase().includes(q)));
+    let list = items.filter(i => (!cat || i.category === cat) && passesFacets(i) && (!q || `${i.name} ${i.brand} ${i.model || ''} ${i.size} ${i.category} ${i.condition} ${i.desc}`.toLowerCase().includes(q)));
     if (sortBy === 'lo') list.sort((a, b) => a.price - b.price); else if (sortBy === 'hi') list.sort((a, b) => b.price - a.price); else list.sort((a, b) => (b.added || '').localeCompare(a.added || ''));
     $('#grid').innerHTML = list.map(i => cardHtml(i, false)).join('');
     const n = list.reduce((a, i) => a + (i.qty || 1), 0);
