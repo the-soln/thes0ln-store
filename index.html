@@ -74,7 +74,8 @@
   .trust .wrap { display: flex; gap: 26px; flex-wrap: wrap; justify-content: center; padding: 13px 20px; }
   .trust span::before { content: "■"; color: var(--accent); margin-right: 8px; }
 
-  section { padding: 56px 0 10px; }
+  section.wrap { padding: 56px 20px 10px; }
+  .hero + .trust + section.wrap, #catsSec { padding-top: 48px; }
   .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
   .sec-head h2 { font-size: 26px; color: #fff; }
   .sec-head h2::before { content: ""; display: inline-block; width: 10px; height: 10px; background: var(--accent); margin-right: 10px; vertical-align: 2px; }
@@ -211,6 +212,8 @@
 
   @media (max-width: 720px) {
     .wrap { padding: 0 14px; }
+    section.wrap { padding: 40px 14px 8px; }
+    #catsSec { padding-top: 34px; }
     .top .wrap { height: 56px; }
     .brand .name { font-size: 32px; } .brand .by { display: none; }
     .nav a:not(.btn) { display: none; }
