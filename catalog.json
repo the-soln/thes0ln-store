@@ -13,7 +13,7 @@
   "instagram": "",
   "banner": ""
  },
- "updated": "2026-10-17T17:33:56.114Z",
+ "updated": "2026-10-27T13:23:32.916Z",
  "items": [
   {
    "id": "okvqau8e1a13d86fb17",
@@ -59,22 +59,6 @@
    "size": "40-3/4 x 40-13/16 in",
    "desc": "Brand new Andersen 400 Series double casement window, never installed.\nSize: 40-3/4\" x 40-13/16\" (W x H, unit dimension). Model # CN235 LR.\nWhite exterior, wood core with low-maintenance vinyl-clad exterior, Low-E glass, natural pine interior (ready to paint or stain), Stone hardware.",
    "qty": 5,
-   "url": "",
-   "added": "2026-09-21",
-   "photos": []
-  },
-  {
-   "id": "h39rkrjf1a13d86fb18",
-   "name": "Andersen 400 Series White Double-Hung Window 29-5/8\" x 56-7/8\"",
-   "price": 317,
-   "category": "Windows",
-   "condition": "New",
-   "brand": "Andersen",
-   "model": "TW2446 · HD #100022908",
-   "retail": 529,
-   "size": "29-5/8 x 56-7/8 in",
-   "desc": "Brand new Andersen 400 Series double-hung window, never installed.\nSize: 29-5/8\" x 56-7/8\" (W x H, unit dimension). Model # TW2446.\nWhite exterior, wood core with low-maintenance vinyl-clad exterior, Low-E glass, natural pine interior (ready to paint or stain), Stone hardware.",
-   "qty": 2,
    "url": "",
    "added": "2026-09-21",
    "photos": []
@@ -202,7 +186,7 @@
    "retail": 369,
    "size": "31-1/2 x 56-1/2 in",
    "desc": "Brand new Andersen 200 Series double-hung window, never installed.\nSize: 31-1/2\" x 56-1/2\" (W x H, unit dimension). Model # 9163991.\nWhite exterior, wood core with low-maintenance vinyl-clad exterior, Low-E glass, white interior, white hardware.",
-   "qty": 3,
+   "qty": 1,
    "url": "",
    "added": "2026-09-21",
    "photos": []
@@ -301,22 +285,6 @@
    "qty": 6,
    "url": "",
    "added": "2026-05-21",
-   "photos": []
-  },
-  {
-   "id": "4l7f5bej1a13d86fb19",
-   "name": "Andersen 100 Series White Single-Hung Insert Replacement Window 31\" x 54\"",
-   "price": 245,
-   "category": "Windows",
-   "condition": "New",
-   "brand": "Andersen",
-   "model": "9180384 · HD #310461052",
-   "retail": 408,
-   "size": "31 x 54 in",
-   "desc": "Brand new Andersen 100 Series single-hung insert replacement window, never installed.\nSize: 31\" x 54\" (W x H, unit dimension). Model # 9180384.\nWhite exterior, Fibrex composite, Low-E glass, white interior, white hardware.",
-   "qty": 2,
-   "url": "",
-   "added": "2026-09-22",
    "photos": []
   },
   {
@@ -595,6 +563,18 @@
   }
  ],
  "sold": [
+  {
+   "id": "h39rkrjf1a13d86fb18",
+   "name": "Andersen 400 Series White Double-Hung Window 29-5/8\" x 56-7/8\"",
+   "date": "2026-10-26",
+   "photo": ""
+  },
+  {
+   "id": "4l7f5bej1a13d86fb19",
+   "name": "Andersen 100 Series White Single-Hung Insert Replacement Window 31\" x 54\"",
+   "date": "2026-10-26",
+   "photo": ""
+  },
   {
    "id": "dk6h5g0v1a13d86fb18",
    "name": "Andersen 400 Series White Double-Hung Window 37-5/8\" x 56-7/8\"",
